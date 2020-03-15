@@ -20,17 +20,20 @@ LoginButtons.propTypes = {
 	btnOnPress: PropTypes.func.isRequired
 };
 const styles = StyleSheet.create({
+	touchStyle: {
+		height: 50
+	},
 	linearStyle: {
 		margin: hp('1%'),
-		width: wp('35%'),
-		height: hp('6%'),
+		width: wp('60%'),
+		height: hp('7%'),
 		justifyContent: 'center',
 		alignItems: 'center',
-		borderRadius: hp('3%')
+		borderRadius: hp('4%')
 	},
 	textStyle: {
 		color: '#ffffff',
-		fontSize: hp('2.2%')
+		fontSize: hp('2.4%')
 	}
 });
 export { LoginButtons };

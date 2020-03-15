@@ -1,11 +1,11 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 import LoginScreen from './src/screeens/LoginScreen';
-import { MainCard } from './src/components/cards';
+import MainScreen from './src/screeens/MainScreen';
 const App = (props) => {
 	return (
 		<SafeAreaView style={{ flex: 1, flexDirection: 'row' }}>
-			<LoginScreen />
+			<MainScreen />
 		</SafeAreaView>
 	);
 };

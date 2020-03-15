@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, KeyboardAvoidingView } from 'react-native';
+import { View, Text, Image, StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { CheckBox } from 'native-base';
 import { LoginInput } from '../components/inputs';
 import { LoginButtons } from '../components/buttons';
 import LG from 'react-native-linear-gradient';
@@ -7,8 +8,8 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 const LoginScreen = (props) => {
 	return (
-		<LG start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={[ '#42661D', '#6E9F39' ]} style={styles.container}>
-			<View behavior="padding" style={styles.keyboard}>
+		<LG start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={[ '#ECE9E6', '#FFFFFF' ]} style={styles.container}>
+			<ScrollView contentContainerStyle={styles.keyboard}>
 				<View style={styles.imageContainer}>
 					<Image source={require('../assets/kopgitLogo.png')} style={styles.image} />
 				</View>
@@ -16,39 +17,52 @@ const LoginScreen = (props) => {
 					<Text style={styles.textTitle}>Risale-i Nur</Text>
 					<Text style={styles.textSub}>Yaratan Rabbi'nin adıyla oku. (Alak:1)</Text>
 				</View>
-				<KeyboardAvoidingView style={{ flex: 6 }}>
+				<KeyboardAvoidingView behavior="padding" style={{ height: 'auto' }}>
 					<View style={styles.inputsContainer}>
 						<LoginInput placeholder={'E-Posta'} />
 						<LoginInput placeholder={'Şifre'} />
 					</View>
-					<View style={styles.buttonsContainer}>
-						<LoginButtons
-							lgColors={[ '#e43a15', '#e65245' ]}
-							btnText={'Giriş'}
-							btnOnPress={() => alert('Giriş')}
-						/>
-						<LoginButtons
-							lgColors={[ '#4b6cb7', '#182848' ]}
-							btnText={'Kayıt Ol'}
-							btnOnPress={() => alert('Kayıt Ol')}
-						/>
-					</View>
 				</KeyboardAvoidingView>
-			</View>
+				<View style={{ flexDirection: 'row', marginBottom: hp('5%'), padding: hp('2%') }}>
+					<View
+						style={{
+							flexDirection: 'row',
+							width: wp('40%'),
+							paddingLeft: 5
+						}}
+					>
+						<CheckBox />
+						<Text style={{ paddingLeft: 20 }}>Beni hatırla</Text>
+					</View>
+					<View style={{ width: wp('40%'), flexDirection: 'row', justifyContent: 'flex-end' }}>
+						<Text>Şifremi unuttum?</Text>
+					</View>
+				</View>
+				<View style={styles.buttonsContainer}>
+					<LoginButtons
+						lgColors={[ '#3C3B3F', '#605C3C' ]}
+						btnText={'Giriş'}
+						btnOnPress={() => alert('Giriş')}
+					/>
+				</View>
+				<View style={{ flexDirection: 'row', paddingTop: hp('1%') }}>
+					<Text style={{ marginRight: 3 }}>Bir hesabın yok mu?</Text>
+					<Text style={{ color: '#0575E6' }}>Kayıt Ol</Text>
+				</View>
+			</ScrollView>
 		</LG>
 	);
 };
 const styles = StyleSheet.create({
 	container: {
-		flex: 10,
-		flexDirection: 'row'
+		flex: 10
 	},
 	keyboard: {
-		flex: 10,
+		height: hp('100%'),
 		alignItems: 'center'
 	},
 	imageContainer: {
-		flex: 2,
+		height: hp('30%'),
 		justifyContent: 'flex-end'
 	},
 	image: {
@@ -57,25 +71,21 @@ const styles = StyleSheet.create({
 		resizeMode: 'center'
 	},
 	textHeader: {
-		flex: 1,
+		height: hp('20%'),
 		alignItems: 'center'
 	},
 	textTitle: {
-		color: '#fff',
+		color: '#717171',
 		fontSize: hp('4%')
 	},
 	textSub: {
-		color: '#fff',
+		color: '#717171',
 		fontSize: hp('2%')
 	},
-	inputsContainer: {
-		flex: 2,
-		justifyContent: 'center'
-	},
 	buttonsContainer: {
-		flex: 1,
 		flexDirection: 'row',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		alignItems: 'center'
 	}
 });
 export default LoginScreen;

@@ -11,7 +11,7 @@ const LoginInput = (props) => {
 				<Ionicons name="md-mail" style={styles.icon} />
 			</View>
 			<View style={styles.inputContainer}>
-				<TextInput placeholder={props.placeholder} style={styles.input} placeholderTextColor="#ddd" />
+				<TextInput placeholder={props.placeholder} style={styles.input} placeholderTextColor="#717171" />
 			</View>
 		</View>
 	);
@@ -25,12 +25,14 @@ const styles = StyleSheet.create({
 		width: wp('80%'),
 		flexDirection: 'row',
 		alignItems: 'center',
+		justifyContent: 'center',
+		alignSelf: 'center',
 		margin: 5
 	},
 	iconContainer: {
 		flex: 2,
 		borderWidth: 1,
-		borderColor: '#fff',
+		borderColor: '#717171',
 		height: 50,
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -38,20 +40,20 @@ const styles = StyleSheet.create({
 		borderTopLeftRadius: hp('10%')
 	},
 	icon: {
-		color: '#fff',
+		color: '#717171',
 		fontSize: hp('3%')
 	},
 	inputContainer: {
 		flex: 8,
 		borderWidth: 1,
-		borderColor: '#fff',
+		borderColor: '#717171',
 		height: 50,
 		borderLeftWidth: 0,
 		borderBottomRightRadius: hp('10%'),
 		borderTopRightRadius: hp('10%')
 	},
 	input: {
-		color: '#fff',
+		color: '#717171',
 		fontSize: hp('2%'),
 		paddingLeft: wp('2%')
 	}

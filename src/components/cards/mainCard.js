@@ -1,61 +1,53 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
+import { StyleSheet, Text, View } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import {
-	Container,
-	Header,
-	Content,
-	Card,
-	CardItem,
-	Thumbnail,
-	Text,
-	Button,
-	Icon,
-	Left,
-	Body,
-	Right
-} from 'native-base';
+
 const MainCard = (props) => {
 	return (
-		<Container>
-			<Header />
-			<Content>
-				<Card>
-					<CardItem>
-						<Left>
-							<Thumbnail source={{ uri: 'Image URL' }} />
-							<Body>
-								<Text>NativeBase</Text>
-								<Text note>GeekyAnts</Text>
-							</Body>
-						</Left>
-					</CardItem>
-					<CardItem cardBody>
-						<Image source={{ uri: 'Image URL' }} style={{ height: 200, width: null, flex: 1 }} />
-					</CardItem>
-					<CardItem>
-						<Left>
-							<Button transparent>
-								<Icon active name="thumbs-up" />
-								<Text>12 Likes</Text>
-							</Button>
-						</Left>
-						<Body>
-							<Button transparent>
-								<Icon active name="chatbubbles" />
-								<Text>4 Comments</Text>
-							</Button>
-						</Body>
-						<Right>
-							<Text>11h ago</Text>
-						</Right>
-					</CardItem>
-				</Card>
-			</Content>
-		</Container>
+		<View style={styles.container}>
+			<View style={styles.headerContainer}>
+				<Text style={styles.headerText}>Header</Text>
+			</View>
+			<View>
+				<Text style={styles.contentText}>
+					İçerik metni İçerik metni İçerik metni İçerik metni İçerik metni İçerik metni İçerik metni İçerik
+					metni İçerik metni İçerik metni İçerik metni İçerik metni İçerik metni İçerik metni İçerik metni
+				</Text>
+			</View>
+		</View>
 	);
 };
-MainCard.propTypes = {};
-const styles = StyleSheet.create({});
+
 export { MainCard };
+
+const styles = StyleSheet.create({
+	container: {
+		width: wp('90%'),
+		minHeight: hp('20%'),
+		marginBottom: hp('3%'),
+		backgroundColor: '#f5f5f5',
+		shadowColor: '#000',
+		shadowOffset: {
+			width: 1,
+			height: 1
+		},
+		shadowOpacity: 1,
+		elevation: 5
+	},
+	headerContainer: {
+		padding: hp('1.5%'),
+		borderBottomWidth: 1,
+		borderBottomColor: '#ddd',
+		backgroundColor: '#0575E6'
+	},
+	headerText: {
+		fontSize: hp('2.5%'),
+		fontWeight: 'bold',
+		color: '#f5f5f5'
+	},
+	contentText: {
+		fontSize: hp('2%'),
+		padding: hp('2%'),
+		color: '#717171'
+	}
+});
