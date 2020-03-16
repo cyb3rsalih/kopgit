@@ -10,8 +10,9 @@ const MainCard = (props) => {
 			</View>
 			<View>
 				<Text style={styles.contentText}>
-					İçerik metni İçerik metni İçerik metni İçerik metni İçerik metni İçerik metni İçerik metni İçerik
-					metni İçerik metni İçerik metni İçerik metni İçerik metni İçerik metni İçerik metni İçerik metni
+					Lorem ipsum dolor sit amet consectetur adipisicing elit.
+					Repellat blanditiis minima explicabo! Iure dignissimos ut asperiores maxime nostrum praesentium aut ducimus dolorem ipsa magnam,
+					rerum ad, enim nemo nulla incidunt.
 				</Text>
 			</View>
 		</View>

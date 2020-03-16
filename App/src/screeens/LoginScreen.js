@@ -1,15 +1,16 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import { CheckBox } from 'native-base';
 import { LoginInput } from '../components/inputs';
 import { LoginButtons } from '../components/buttons';
 import LG from 'react-native-linear-gradient';
+import { KeyboardAvoidingView } from '../components/extra';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const LoginScreen = (props) => {
 	return (
-		<LG start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={[ '#ECE9E6', '#FFFFFF' ]} style={styles.container}>
-			<ScrollView contentContainerStyle={styles.keyboard}>
+		<LG start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={['#ECE9E6', '#FFFFFF']} style={styles.container}>
+			<KeyboardAvoidingView contentContainerStyle={styles.keyboard}>
 				<View style={styles.imageContainer}>
 					<Image source={require('../assets/kopgitLogo.png')} style={styles.image} />
 				</View>
@@ -17,12 +18,11 @@ const LoginScreen = (props) => {
 					<Text style={styles.textTitle}>Risale-i Nur</Text>
 					<Text style={styles.textSub}>Yaratan Rabbi'nin adıyla oku. (Alak:1)</Text>
 				</View>
-				<KeyboardAvoidingView behavior="padding" style={{ height: 'auto' }}>
-					<View style={styles.inputsContainer}>
-						<LoginInput placeholder={'E-Posta'} />
-						<LoginInput placeholder={'Şifre'} />
-					</View>
-				</KeyboardAvoidingView>
+				<View style={styles.inputsContainer}>
+					<LoginInput placeholder={'E-Posta'} />
+					<LoginInput placeholder={'Şifre'} />
+				</View>
+
 				<View style={{ flexDirection: 'row', marginBottom: hp('5%'), padding: hp('2%') }}>
 					<View
 						style={{
@@ -40,7 +40,7 @@ const LoginScreen = (props) => {
 				</View>
 				<View style={styles.buttonsContainer}>
 					<LoginButtons
-						lgColors={[ '#3C3B3F', '#605C3C' ]}
+						lgColors={['#3C3B3F', '#605C3C']}
 						btnText={'Giriş'}
 						btnOnPress={() => alert('Giriş')}
 					/>
@@ -49,7 +49,7 @@ const LoginScreen = (props) => {
 					<Text style={{ marginRight: 3 }}>Bir hesabın yok mu?</Text>
 					<Text style={{ color: '#0575E6' }}>Kayıt Ol</Text>
 				</View>
-			</ScrollView>
+			</KeyboardAvoidingView>
 		</LG>
 	);
 };
