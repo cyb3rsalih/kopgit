@@ -1,8 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import LoginScreen from '../src/screeens/LoginScreen';
-import MainScreen from '../src/screeens/MainScreen';
+import LoginScreen from '../src/screens/LoginScreen';
+import MainScreen from '../src/screens/MainScreen';
+import Splash from '../src/screens/Splash'
 
 const AuthStack = createStackNavigator();
 const AuthNavigator = () => (
@@ -28,8 +29,24 @@ const RootStackScreen = ({ userToken }) => (
     </RootStack.Navigator>
 );
 
-const AppNavigator = (props) => {
-    return <RootStackScreen userToken={true} />;
+import { loading } from '../redux/actions/dataAction';
+import { connect } from 'react-redux'
+
+const AppNavigator = ({ data, dispatch }) => {
+    React.useEffect(() => {
+        setTimeout(() => {
+            dispatch(loading(false));
+        }, 500);
+    }, []);
+
+    if (data.isLoading) {
+        return <Splash />;
+    }
+
+    return <RootStackScreen userToken={data.userToken} />;
 };
 
-export default AppNavigator
+const mapStateToProps = state => {
+    return state;
+};
+export default connect(mapStateToProps)(AppNavigator)
