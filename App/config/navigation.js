@@ -1,9 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import LoginScreen from '../src/screens/LoginScreen';
-import MainScreen from '../src/screens/MainScreen';
-import Splash from '../src/screens/Splash'
+import LoginScreen from '../screens/LoginScreen';
+import MainScreen from '../screens/MainScreen';
+import Splash from '../screens/Splash'
 
 const AuthStack = createStackNavigator();
 const AuthNavigator = () => (
