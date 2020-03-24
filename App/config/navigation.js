@@ -5,12 +5,27 @@ import LoginScreen from '../screens/LoginScreen';
 import MainScreen from '../screens/MainScreen';
 import Splash from '../screens/Splash'
 
+
+import Register from '../screens/Register';
+import Login from '../screens/Login';
+import ForgotPassword from '../screens/ForgotPassword';
+
 const AuthStack = createStackNavigator();
 const AuthNavigator = () => (
     <AuthStack.Navigator headerMode="none">
-        <AuthStack.Screen name="Login" component={LoginScreen} />
+        <AuthStack.Screen name="Login" component={Login} />
+        <AuthStack.Screen name="Register" component={Register} />
+        <AuthStack.Screen name="ForgotPassword" component={ForgotPassword} />
     </AuthStack.Navigator>
 );
+
+// OLD
+// const AuthStack = createStackNavigator();
+// const AuthNavigator = () => (
+//     <AuthStack.Navigator headerMode="none">
+//         <AuthStack.Screen name="Login" component={LoginScreen} />
+//     </AuthStack.Navigator>
+// );
 
 const RootStack = createStackNavigator();
 const RootStackScreen = ({ userToken }) => (

@@ -8,9 +8,6 @@ import { connect } from 'react-redux'
 import { setUserToken } from '../redux/actions/dataAction';
 
 const MainScreen = ({ data, dispatch, navigation }) => {
-	YellowBox.ignoreWarnings([
-		'VirtualizedLists should never be nested' // TODO: Remove when fixed
-	]);
 
 	const themeContext = React.useContext(ThemeContext);
 
