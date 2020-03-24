@@ -4,8 +4,10 @@ import { MainCard, ListCard } from '../components/cards';
 import { Button, Layout, List } from '@ui-kitten/components';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { ThemeContext } from '../config/theme-context';
+import { connect } from 'react-redux'
+import { setUserToken } from '../redux/actions/dataAction';
 
-const MainScreen = (props) => {
+const MainScreen = ({ data, dispatch, navigation }) => {
 	YellowBox.ignoreWarnings([
 		'VirtualizedLists should never be nested' // TODO: Remove when fixed
 	]);
@@ -15,6 +17,10 @@ const MainScreen = (props) => {
 	const navigateDetails = () => {
 		navigation.navigate('Details');
 	};
+
+	const logout = () => {
+		dispatch(setUserToken(null));
+	}
 
 
 	const at = [1, 2]
@@ -28,12 +34,15 @@ const MainScreen = (props) => {
 					)
 				})}
 				<Button style={{ marginVertical: 4 }} onPress={themeContext.toggleTheme}>Tema Değiştir</Button>
+				<Button style={{ marginVertical: 4 }} onPress={logout}>Çıkış Yap</Button>
 			</Layout>
 		</ScrollView>
 	);
 };
-
-export default MainScreen;
+const mapStateToProps = state => {
+	return state;
+};
+export default connect(mapStateToProps)(MainScreen);
 
 const styles = StyleSheet.create({
 	container: {
