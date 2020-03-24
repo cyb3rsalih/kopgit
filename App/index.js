@@ -1,20 +1,21 @@
 import 'react-native-gesture-handler';
-import * as React from 'react';
-import { View, Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import AppNavigator from './config/navigation';
+import { ApplicationProvider } from '@ui-kitten/components';
+import { mapping, light as lightTheme } from '@eva-design/eva';
 
 import { Provider as Redux } from 'react-redux';
 import store from './redux/store';
 
 function App() {
 	return (
-		<Redux store={store}>
-			<NavigationContainer>
-				<AppNavigator />
-			</NavigationContainer>
-		</Redux>
+		<ApplicationProvider mapping={mapping} theme={lightTheme}>
+			<Redux store={store}>
+				<NavigationContainer>
+					<AppNavigator />
+				</NavigationContainer>
+			</Redux>
+		</ApplicationProvider>
 	);
 }
 
