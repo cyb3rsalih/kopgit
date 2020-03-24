@@ -1,10 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import LoginScreen from '../screens/LoginScreen';
-import MainScreen from '../screens/MainScreen';
+import MainScreen from '../screens/MainScreen'; // Kalkacak
 import Splash from '../screens/Splash'
-
 
 import Register from '../screens/Register';
 import Login from '../screens/Login';
@@ -18,14 +16,6 @@ const AuthNavigator = () => (
         <AuthStack.Screen name="ForgotPassword" component={ForgotPassword} />
     </AuthStack.Navigator>
 );
-
-// OLD
-// const AuthStack = createStackNavigator();
-// const AuthNavigator = () => (
-//     <AuthStack.Navigator headerMode="none">
-//         <AuthStack.Screen name="Login" component={LoginScreen} />
-//     </AuthStack.Navigator>
-// );
 
 const RootStack = createStackNavigator();
 const RootStackScreen = ({ userToken }) => (
