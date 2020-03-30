@@ -4,6 +4,7 @@ import { Button, Input, Text } from '@ui-kitten/components';
 import { ImageOverlay } from '../components/imageOverlay';
 import { EmailIcon } from '../components/icons';
 import { KeyboardAvoidingView } from '../components/KeyboardAvoidingView';
+import LG from 'react-native-linear-gradient';
 
 ForgotPassword = ({ navigation }) => {
     const [email, setEmail] = React.useState();
@@ -11,12 +12,11 @@ ForgotPassword = ({ navigation }) => {
     const onResetPasswordButtonPress = () => {
         navigation.goBack();
     };
+    gradientColorStyles = ["#555555", "#000000"]
 
     return (
         <KeyboardAvoidingView>
-            <ImageOverlay
-                style={styles.container}
-                source={require('../assets/forgot-background.jpg')}>
+            <LG style={styles.container} colors={gradientColorStyles}>
                 <Text style={styles.forgotPasswordLabel} category="h4" status="control">
                     Parolamı Unuttum
         </Text>
@@ -35,7 +35,7 @@ ForgotPassword = ({ navigation }) => {
                 <Button size="giant" onPress={onResetPasswordButtonPress}>
                     PAROLAMI SIFIRLA
         </Button>
-            </ImageOverlay>
+            </LG>
         </KeyboardAvoidingView>
     );
 };

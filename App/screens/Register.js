@@ -19,6 +19,7 @@ import {
     TwitterIcon,
 } from '../components/icons';
 import { KeyboardAvoidingView } from '../components/KeyboardAvoidingView';
+import LG from 'react-native-linear-gradient';
 
 Register = ({ navigation }) => {
     const [firstName, setFirstName] = React.useState();
@@ -37,92 +38,74 @@ Register = ({ navigation }) => {
     const onSignInButtonPress = () => {
         navigation.navigate('Login');
     };
+    gradientColorStyles = ["#555555", "#000000"]
 
     return (
-        <KeyboardAvoidingView style={styles.container}>
-            <ImageOverlay
-                style={styles.headerContainer}
-                source={require('../assets/register-background.jpg')}>
-                <Button
-                    style={styles.evaButton}
-                    appearance="ghost"
-                    status="control"
-                    size="large"
-                    icon={HeartIconFill}>
-                    Kayıt
-        </Button>
-                <View style={styles.signUpContainer}>
-                    <Text style={styles.signInLabel} category="h4" status="control">
-                        KOPGİT
+        <KeyboardAvoidingView >
+            <LG style={styles.container} colors={gradientColorStyles}>
+                <View style={styles.headerContainer}>
+                    <Text category="h1" status="control">
+                        Kopgit
+                </Text>
+                    <Text style={styles.signInLabel} category="s1" status="control">
+                        Kayıt Ol
           </Text>
-                    <Button
-                        style={styles.signInButton}
-                        appearance="ghost"
-                        status="control"
-                        size="giant"
-                        icon={ArrowForwardIconOutline}
-                        onPress={onSignInButtonPress}>
-                        Giriş Yap
-          </Button>
                 </View>
-            </ImageOverlay>
-            <Text category="h5" style={styles.emailSignLabel}>
-                Email ile kayıt ol
-      </Text>
-            <View style={[styles.container, styles.formContainer]}>
-                <Input
-                    placeholder="Ahmet"
-                    label="AD"
-                    autoCapitalize="words"
-                    value={firstName}
-                    onChangeText={setFirstName}
-                />
-                <Input
-                    style={styles.formInput}
-                    placeholder="Demir"
-                    label="SOYAD"
-                    autoCapitalize="words"
-                    value={lastName}
-                    onChangeText={setLastName}
-                />
-                <Datepicker
-                    style={styles.formInput}
-                    placeholder="18/10/1995"
-                    label="Doğum Tarihi"
-                    date={dob}
-                    onSelect={setDob}
-                />
-                <Input
-                    style={styles.formInput}
-                    placeholder="alidemir@gmail.com"
-                    label="EMAIL"
-                    value={email}
-                    onChangeText={setEmail}
-                />
-                <Input
-                    style={styles.formInput}
-                    label="PAROLA"
-                    placeholder="Parola"
-                    secureTextEntry={true}
-                    value={password}
-                    onChangeText={setPassword}
-                />
-                <CheckBox
-                    style={styles.termsCheckBox}
-                    textStyle={styles.termsCheckBoxText}
-                    checked={termsAccepted}
-                    text={
-                        'Kayıt olarak bilgilerimin KVKK kapsamında\nkayıt altına alınmasını kabul ediyorum.'
-                    }
-                    onChange={checked => setTermsAccepted(checked)}
-                />
-            </View>
-            <Button
-                style={styles.signUpButton}
-                size="large"
-                onPress={onSignUpButtonPress}>
-                SIGN UP
+                <View style={[styles.container, styles.formContainer]}>
+                    <Input
+                        placeholder="Ahmet"
+                        label="AD"
+                        autoCapitalize="words"
+                        value={firstName}
+                        onChangeText={setFirstName}
+                    />
+                    <Input
+                        style={styles.formInput}
+                        placeholder="Demir"
+                        label="SOYAD"
+                        autoCapitalize="words"
+                        value={lastName}
+                        onChangeText={setLastName}
+                    />
+                    <Datepicker
+                        style={styles.formInput}
+                        placeholder="18/10/1995"
+                        label="Doğum Tarihi"
+                        date={dob}
+                        onSelect={setDob}
+                    />
+                    <Input
+                        style={styles.formInput}
+                        placeholder="alidemir@gmail.com"
+                        label="EMAIL"
+                        value={email}
+                        onChangeText={setEmail}
+                    />
+                    <Input
+                        style={styles.formInput}
+                        label="PAROLA"
+                        placeholder="Parola"
+                        secureTextEntry={true}
+                        value={password}
+                        onChangeText={setPassword}
+                    />
+                    <CheckBox
+                        style={styles.termsCheckBox}
+                        textStyle={styles.termsCheckBoxText}
+                        checked={termsAccepted}
+                        text={
+                            'Kayıt olarak bilgilerimin KVKK kapsamında\nkayıt altına alınmasını kabul ediyorum.'
+                        }
+                        onChange={checked => setTermsAccepted(checked)}
+                    />
+                </View>
+                <Button
+                    style={styles.signUpButton}
+                    size="large"
+                    onPress={onSignUpButtonPress}>
+                    SIGN UP
       </Button>
+            </LG>
         </KeyboardAvoidingView>
     );
 };
@@ -131,13 +114,13 @@ export default Register;
 
 const themedStyles = StyleService.create({
     container: {
-        backgroundColor: 'background-basic-color-1',
+        flex: 1
     },
     headerContainer: {
-        minHeight: 216,
-        paddingHorizontal: 16,
-        paddingTop: 24,
-        paddingBottom: 44,
+        justifyContent: 'center',
+        alignItems: 'center',
+
+        marginTop: 32,
     },
     signUpContainer: {
         flexDirection: 'row',

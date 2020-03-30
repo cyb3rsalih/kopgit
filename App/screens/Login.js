@@ -6,6 +6,7 @@ import { EyeIcon, EyeOffIcon, PersonIcon } from '../components/icons';
 import { KeyboardAvoidingView } from '../components/KeyboardAvoidingView';
 import { connect } from 'react-redux';
 import { userTokenInit } from '../redux/actions/dataAction';
+import LG from 'react-native-linear-gradient';
 
 Login = ({ navigation, data, dispatch }) => {
     const [email, setEmail] = React.useState();
@@ -37,11 +38,10 @@ Login = ({ navigation, data, dispatch }) => {
         setPasswordVisible(!passwordVisible);
     };
 
+    gradientColorStyles = ["#555555", "#000000"]
     return (
         <KeyboardAvoidingView>
-            <ImageOverlay
-                style={styles.container}
-                source={require('../assets/login-background.jpg')}>
+            <LG style={styles.container} colors={gradientColorStyles}>
                 <View style={styles.headerContainer}>
                     <Text category="h1" status="control">
                         Kopgit
@@ -92,7 +92,8 @@ Login = ({ navigation, data, dispatch }) => {
                     onPress={onSignUpButtonPress}>
                     Hesabın yok mu? Kayıt Ol
         </Button>
-            </ImageOverlay>
+            </LG>
+
         </KeyboardAvoidingView>
     );
 };
