@@ -4,7 +4,7 @@ import { Button, Input, Text } from '@ui-kitten/components';
 import { EyeIcon, EyeOffIcon, PersonIcon } from '../components/icons';
 import { KeyboardAvoidingView } from '../components/KeyboardAvoidingView';
 import { connect } from 'react-redux';
-import { userTokenInit } from '../redux/actions/dataAction';
+import { setUserToken } from '../redux/actions/dataAction';
 import LG from 'react-native-linear-gradient';
 
 Login = ({ navigation, data, dispatch }) => {
@@ -15,7 +15,7 @@ Login = ({ navigation, data, dispatch }) => {
     const onSignInButtonPress = async () => {
         //navigation && navigation.goBack();
         //navigation && navigation.navigate('Profile');
-        dispatch(userTokenInit('token123'));
+        dispatch(setUserToken('token123'));
 
         // Redux training
         // try {
@@ -82,7 +82,7 @@ Login = ({ navigation, data, dispatch }) => {
                     size="giant"
                     onPress={onSignInButtonPress}>
                     GİRİŞ YAP
-        </Button>
+                </Button>
                 <Button
                     style={styles.signUpButton}
                     appearance="ghost"

@@ -17,10 +17,10 @@ ForgotPassword = ({ navigation, data, dispatch }) => {
             <LG style={styles.container} colors={data.gradientColorStyles}>
                 <Text style={styles.forgotPasswordLabel} category="h4" status="control">
                     Parolamı Unuttum
-        </Text>
+                </Text>
                 <Text style={styles.enterEmailLabel} status="control">
                     Lütfen email adresinizi girin
-        </Text>
+                </Text>
                 <View style={styles.formContainer}>
                     <Input
                         status="control"
@@ -32,7 +32,7 @@ ForgotPassword = ({ navigation, data, dispatch }) => {
                 </View>
                 <Button size="giant" onPress={onResetPasswordButtonPress}>
                     PAROLAMI SIFIRLA
-        </Button>
+                </Button>
             </LG>
         </KeyboardAvoidingView>
     );
