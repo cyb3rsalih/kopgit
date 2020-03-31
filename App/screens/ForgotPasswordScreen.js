@@ -5,7 +5,7 @@ import { EmailIcon } from '../components/icons';
 import { KeyboardAvoidingView } from '../components/KeyboardAvoidingView';
 import LG from 'react-native-linear-gradient';
 import { connect } from 'react-redux'
-ForgotPassword = ({ navigation, data, dispatch }) => {
+ForgotPasswordScreen = ({ navigation, data, dispatch }) => {
     const [email, setEmail] = React.useState();
 
     const onResetPasswordButtonPress = () => {
@@ -40,7 +40,7 @@ ForgotPassword = ({ navigation, data, dispatch }) => {
 const mapStateToProps = state => {
     return state;
 };
-export default connect(mapStateToProps)(ForgotPassword);
+export default connect(mapStateToProps)(ForgotPasswordScreen);
 
 const styles = StyleSheet.create({
     container: {

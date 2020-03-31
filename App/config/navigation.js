@@ -6,10 +6,26 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import MainScreen from '../screens/MainScreen'; // Kalkacak
 import Splash from '../screens/Splash'
 
-import Register from '../screens/Register';
-import Login from '../screens/Login';
-import ForgotPassword from '../screens/ForgotPassword';
+import RegisterScreen from '../screens/RegisterScreen';
+import LoginScreen from '../screens/LoginScreen';
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import DashboardScreen from '../screens/DashboardScreen'
+import NewSupportRequestScreen from '../screens/NewSupportRequestScreen'
+import MyQuestionsScreen from '../screens/MyQuestionsScreen'
+import FAQScreen from '../screens/FAQScreen'
+
+import MyReportsScreen from '../screens/MyReportsScreen'
+import NewReportScreen from '../screens/NewReportScreen'
+
+import MyTasksScreen from '../screens/MyTasksScreen'
+import TasksScreen from '../screens/TasksScreen'
+import RewardScreen from '../screens/RewardScreen'
+
+import ProfileScreen from '../screens/ProfileScreen'
+import EditProfileScreen from '../screens/EditProfileScreen'
+import ChangePasswordScreen from '../screens/ChangePasswordScreen'
+
+import OptionsScreen from '../screens/OptionsScreen'
 /** 
  * TODO SCREENS
  * 
@@ -38,35 +54,35 @@ import DashboardScreen from '../screens/DashboardScreen'
 const Support = createStackNavigator();
 const SupportNavigator = () => {
     <Support.Navigator>
-        <Support.Screen name={'Yeni Soru'} component={MainScreen} />
-        <Support.Screen name={'Sorularım'} component={MainScreen} />
-        <Support.Screen name={'Sıkça Sorulan Sorular'} component={MainScreen} />
+        <Support.Screen name={'Yeni Soru'} component={NewSupportRequestScreen} />
+        <Support.Screen name={'Sorularım'} component={MyQuestionsScreen} />
+        <Support.Screen name={'Sıkça Sorulan Sorular'} component={FAQScreen} />
     </Support.Navigator>
 }
 
 const Report = createStackNavigator();
 const ReportNavigator = () => {
     <Report.Navigator>
-        <Report.Screen name={'Geçmiş Raporlar'} component={MainScreen} />
-        <Report.Screen name={'Yeni Rapor Girişi'} component={MainScreen} />
+        <Report.Screen name={'GecmisRaporlar'} component={MyReportsScreen} />
+        <Report.Screen name={'Yeni Rapor Girişi'} component={NewReportScreen} />
     </Report.Navigator>
 }
 
 const Tasks = createStackNavigator();
 const TasksNavigator = () => (
     <Tasks.Navigator>
-        <Tasks.Screen name={'Görevlerim'} component={MainScreen} />
-        <Tasks.Screen name={'Görev'} component={MainScreen} />
-        <Tasks.Screen name={'Ödül'} component={MainScreen} />
+        <Tasks.Screen name={'Görevlerim'} component={MyTasksScreen} />
+        <Tasks.Screen name={'Görev'} component={TasksScreen} />
+        <Tasks.Screen name={'Ödül'} component={RewardScreen} />
     </Tasks.Navigator>
 )
 
 const Profile = createStackNavigator();
 const ProfileNavigator = () => (
     <Profile.Navigator>
-        <Profile.Screen name={'Profil'} component={MainScreen} />
-        <Profile.Screen name={'Edit Profile'} component={MainScreen} />
-        <Profile.Screen name={'Change Password'} component={MainScreen} />
+        <Profile.Screen name={'Profil'} component={ProfileScreen} />
+        <Profile.Screen name={'Edit Profile'} component={EditProfileScreen} />
+        <Profile.Screen name={'Change Password'} component={ChangePasswordScreen} />
     </Profile.Navigator>
 )
 
@@ -91,7 +107,7 @@ const TabNavigator = () => (
 const Options = createStackNavigator();
 const OptionsNavigator = () => (
     <Options.Navigator>
-        <Options.Screen name="Ayarlar" component={MainScreen} />
+        <Options.Screen name="Ayarlar" component={OptionsScreen} />
     </Options.Navigator>
 )
 
@@ -106,9 +122,9 @@ const MainNavigator = () => (
 const AuthStack = createStackNavigator();
 const AuthNavigator = () => (
     <AuthStack.Navigator headerMode="none">
-        <AuthStack.Screen name="Login" component={Login} />
-        <AuthStack.Screen name="Register" component={Register} />
-        <AuthStack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <AuthStack.Screen name="Giriş" component={LoginScreen} />
+        <AuthStack.Screen name="Kayıt" component={RegisterScreen} />
+        <AuthStack.Screen name="Parolamı Unuttum" component={ForgotPasswordScreen} />
     </AuthStack.Navigator>
 );
 

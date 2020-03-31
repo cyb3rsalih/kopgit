@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { setUserToken } from '../redux/actions/dataAction';
 import LG from 'react-native-linear-gradient';
 
-Login = ({ navigation, data, dispatch }) => {
+LoginScreen = ({ navigation, data, dispatch }) => {
     const [email, setEmail] = React.useState();
     const [password, setPassword] = React.useState();
     const [passwordVisible, setPasswordVisible] = React.useState(false);
@@ -100,7 +100,7 @@ const mapStateToProps = state => {
     return state;
 };
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps)(LoginScreen);
 
 const styles = StyleSheet.create({
     container: {
