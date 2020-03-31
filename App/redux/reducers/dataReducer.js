@@ -3,6 +3,7 @@ import { LOADING, SET_USER_TOKEN } from '../actions/dataAction';
 const initialState = {
     isLoading: true,
     userToken: null,
+    gradientColorStyles: ["#555555", "#000000"]
 };
 
 export default (state = initialState, action) => {

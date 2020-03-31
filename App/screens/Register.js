@@ -4,24 +4,16 @@ import {
     Button,
     CheckBox,
     Datepicker,
-    Divider,
     Input,
     StyleService,
     Text,
     useStyleSheet,
 } from '@ui-kitten/components';
-import { ImageOverlay } from '../components/imageOverlay';
-import {
-    ArrowForwardIconOutline,
-    FacebookIcon,
-    GoogleIcon,
-    HeartIconFill,
-    TwitterIcon,
-} from '../components/icons';
 import { KeyboardAvoidingView } from '../components/KeyboardAvoidingView';
 import LG from 'react-native-linear-gradient';
+import { connect } from 'react-redux'
 
-Register = ({ navigation }) => {
+Register = ({ navigation, data, dispatch }) => {
     const [firstName, setFirstName] = React.useState();
     const [lastName, setLastName] = React.useState();
     const [email, setEmail] = React.useState();
@@ -38,11 +30,10 @@ Register = ({ navigation }) => {
     const onSignInButtonPress = () => {
         navigation.navigate('Login');
     };
-    gradientColorStyles = ["#555555", "#000000"]
 
     return (
         <KeyboardAvoidingView >
-            <LG style={styles.container} colors={gradientColorStyles}>
+            <LG style={styles.container} colors={data.gradientColorStyles}>
                 <View style={styles.headerContainer}>
                     <Text category="h1" status="control">
                         Kopgit
@@ -110,7 +101,11 @@ Register = ({ navigation }) => {
     );
 };
 
-export default Register;
+const mapStateToProps = state => {
+    return state;
+};
+
+export default connect(mapStateToProps)(Register);
 
 const themedStyles = StyleService.create({
     container: {

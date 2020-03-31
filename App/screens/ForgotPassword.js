@@ -1,22 +1,20 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button, Input, Text } from '@ui-kitten/components';
-import { ImageOverlay } from '../components/imageOverlay';
 import { EmailIcon } from '../components/icons';
 import { KeyboardAvoidingView } from '../components/KeyboardAvoidingView';
 import LG from 'react-native-linear-gradient';
-
-ForgotPassword = ({ navigation }) => {
+import { connect } from 'react-redux'
+ForgotPassword = ({ navigation, data, dispatch }) => {
     const [email, setEmail] = React.useState();
 
     const onResetPasswordButtonPress = () => {
         navigation.goBack();
     };
-    gradientColorStyles = ["#555555", "#000000"]
 
     return (
         <KeyboardAvoidingView>
-            <LG style={styles.container} colors={gradientColorStyles}>
+            <LG style={styles.container} colors={data.gradientColorStyles}>
                 <Text style={styles.forgotPasswordLabel} category="h4" status="control">
                     Parolamı Unuttum
         </Text>
@@ -39,8 +37,10 @@ ForgotPassword = ({ navigation }) => {
         </KeyboardAvoidingView>
     );
 };
-
-export default ForgotPassword;
+const mapStateToProps = state => {
+    return state;
+};
+export default connect(mapStateToProps)(ForgotPassword);
 
 const styles = StyleSheet.create({
     container: {
