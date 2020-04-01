@@ -186,9 +186,9 @@ const MainNavigator = () => (
 const AuthStack = createStackNavigator();
 const AuthNavigator = () => (
     <AuthStack.Navigator headerMode="none">
-        <AuthStack.Screen name="Giriş" component={LoginScreen} />
-        <AuthStack.Screen name="Kayıt" component={RegisterScreen} />
-        <AuthStack.Screen name="Parolamı Unuttum" component={ForgotPasswordScreen} />
+        <AuthStack.Screen name="LoginScreen" component={LoginScreen} />
+        <AuthStack.Screen name="RegisterScreen" component={RegisterScreen} />
+        <AuthStack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen} />
     </AuthStack.Navigator>
 );
 
