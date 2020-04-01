@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import MainScreen from '../screens/MainScreen'; // Kalkacak
 import Splash from '../screens/Splash';
+import MissionScreen from '../screens/MissionScreen';
 
 import Register from '../screens/Register';
 import Login from '../screens/Login';
