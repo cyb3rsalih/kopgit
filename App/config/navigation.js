@@ -47,26 +47,28 @@ import OptionsScreen from '../screens/OptionsScreen'
  * * Profil
  * * EditProfile
  * * ChangePassword
- * 
- * OPTİONS
- * * Options
+
 */
 const Support = createStackNavigator();
-const SupportNavigator = () => {
+const SupportNavigator = () => (
+
     <Support.Navigator>
         <Support.Screen name={'Yeni Soru'} component={NewSupportRequestScreen} />
         <Support.Screen name={'Sorularım'} component={MyQuestionsScreen} />
         <Support.Screen name={'Sıkça Sorulan Sorular'} component={FAQScreen} />
     </Support.Navigator>
-}
+)
+
 
 const Report = createStackNavigator();
-const ReportNavigator = () => {
+const ReportNavigator = () => (
+
     <Report.Navigator>
-        <Report.Screen name={'GecmisRaporlar'} component={MyReportsScreen} />
+        <Report.Screen name={'Geçmiş Raporlar'} component={MyReportsScreen} />
         <Report.Screen name={'Yeni Rapor Girişi'} component={NewReportScreen} />
     </Report.Navigator>
-}
+)
+
 
 const Tasks = createStackNavigator();
 const TasksNavigator = () => (
@@ -81,15 +83,15 @@ const Profile = createStackNavigator();
 const ProfileNavigator = () => (
     <Profile.Navigator>
         <Profile.Screen name={'Profil'} component={ProfileScreen} />
-        <Profile.Screen name={'Edit Profile'} component={EditProfileScreen} />
-        <Profile.Screen name={'Change Password'} component={ChangePasswordScreen} />
+        <Profile.Screen name={'Profil Düzenle'} component={EditProfileScreen} />
+        <Profile.Screen name={'Parola Değiştir'} component={ChangePasswordScreen} />
     </Profile.Navigator>
 )
 
 const Dashboard = createStackNavigator();
 const DashboardNavigator = () => (
     <Dashboard.Navigator>
-        <Dashboard.Screen name={'Anasayfa'} component={DashboardScreen} />
+        <Dashboard.Screen name={'Anasayfa'} component={MainScreen} />
     </Dashboard.Navigator>
 )
 
@@ -114,8 +116,8 @@ const OptionsNavigator = () => (
 const Drawer = createDrawerNavigator();
 const MainNavigator = () => (
     <Drawer.Navigator headerMode="none">
-        <Drawer.Screen name="Report" component={TabNavigator} />
-        <Drawer.Screen name="Options" component={OptionsNavigator} />
+        <Drawer.Screen name="Rapor" component={TabNavigator} />
+        <Drawer.Screen name="Ayarlar" component={OptionsNavigator} />
     </Drawer.Navigator>
 );
 
