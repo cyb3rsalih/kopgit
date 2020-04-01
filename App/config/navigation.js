@@ -52,21 +52,25 @@ import OptionsScreen from '../screens/OptionsScreen'
  * * Options
 */
 const Support = createStackNavigator();
-const SupportNavigator = () => {
+const SupportNavigator = () => (
+
     <Support.Navigator>
         <Support.Screen name={'Yeni Soru'} component={NewSupportRequestScreen} />
         <Support.Screen name={'Sorularım'} component={MyQuestionsScreen} />
         <Support.Screen name={'Sıkça Sorulan Sorular'} component={FAQScreen} />
     </Support.Navigator>
-}
+)
+
 
 const Report = createStackNavigator();
-const ReportNavigator = () => {
+const ReportNavigator = () => (
+
     <Report.Navigator>
-        <Report.Screen name={'GecmisRaporlar'} component={MyReportsScreen} />
+        <Report.Screen name={'Geçmiş Raporlar'} component={MyReportsScreen} />
         <Report.Screen name={'Yeni Rapor Girişi'} component={NewReportScreen} />
     </Report.Navigator>
-}
+)
+
 
 const Tasks = createStackNavigator();
 const TasksNavigator = () => (
