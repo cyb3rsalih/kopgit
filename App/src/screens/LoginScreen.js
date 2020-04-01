@@ -7,21 +7,19 @@ import LG from 'react-native-linear-gradient';
 import { KeyboardAvoidingView } from '../components/extra';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-import { setUserToken } from '../../redux/actions/dataAction'
+import { setUserToken } from '../../redux/actions/dataAction';
 
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 const LoginScreen = ({ navigation, data, dispatch }) => {
-
 	handleLogin = () => {
 		dispatch(setUserToken('token123'));
 	};
 
 	// Add Login, Register, Forgot Password Navigations
 
-
 	return (
-		<LG start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={['#ECE9E6', '#FFFFFF']} style={styles.container}>
+		<LG start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={[ '#ECE9E6', '#FFFFFF' ]} style={styles.container}>
 			<KeyboardAvoidingView contentContainerStyle={styles.keyboard}>
 				<View style={styles.imageContainer}>
 					<Image source={require('../assets/kopgitLogo.png')} style={styles.image} />
@@ -51,11 +49,7 @@ const LoginScreen = ({ navigation, data, dispatch }) => {
 					</View>
 				</View>
 				<View style={styles.buttonsContainer}>
-					<LoginButtons
-						lgColors={['#3C3B3F', '#605C3C']}
-						btnText={'Giriş'}
-						btnOnPress={handleLogin}
-					/>
+					<LoginButtons lgColors={[ '#3C3B3F', '#605C3C' ]} btnText={'Giriş'} btnOnPress={handleLogin} />
 				</View>
 				<View style={{ flexDirection: 'row', paddingTop: hp('1%') }}>
 					<Text style={{ marginRight: 3 }}>Bir hesabın yok mu?</Text>
@@ -66,7 +60,7 @@ const LoginScreen = ({ navigation, data, dispatch }) => {
 	);
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return state;
 };
 
