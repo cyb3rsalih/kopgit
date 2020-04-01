@@ -47,9 +47,7 @@ import OptionsScreen from '../screens/OptionsScreen'
  * * Profil
  * * EditProfile
  * * ChangePassword
- * 
- * OPTİONS
- * * Options
+
 */
 const Support = createStackNavigator();
 const SupportNavigator = () => (
@@ -93,7 +91,7 @@ const ProfileNavigator = () => (
 const Dashboard = createStackNavigator();
 const DashboardNavigator = () => (
     <Dashboard.Navigator>
-        <Dashboard.Screen name={'Anasayfa'} component={DashboardScreen} />
+        <Dashboard.Screen name={'Anasayfa'} component={MainScreen} />
     </Dashboard.Navigator>
 )
 
