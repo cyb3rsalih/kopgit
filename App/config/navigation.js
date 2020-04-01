@@ -57,7 +57,7 @@ import { BottomNavigation, BottomNavigationTab, Drawer as UIKittenDrawer, Icon, 
 const Support = createStackNavigator();
 const SupportNavigator = () => (
 
-    <Support.Navigator>
+    <Support.Navigator headerMode="none">
         <Support.Screen name={'Yeni Soru'} component={NewSupportRequestScreen} />
         <Support.Screen name={'Sorularım'} component={MyQuestionsScreen} />
         <Support.Screen name={'Sıkça Sorulan Sorular'} component={FAQScreen} />
@@ -68,7 +68,7 @@ const SupportNavigator = () => (
 const Report = createStackNavigator();
 const ReportNavigator = () => (
 
-    <Report.Navigator>
+    <Report.Navigator headerMode="none">
         <Report.Screen name={'Geçmiş Raporlar'} component={MyReportsScreen} />
         <Report.Screen name={'Yeni Rapor Girişi'} component={NewReportScreen} />
     </Report.Navigator>
@@ -77,7 +77,7 @@ const ReportNavigator = () => (
 
 const Tasks = createStackNavigator();
 const TasksNavigator = () => (
-    <Tasks.Navigator>
+    <Tasks.Navigator headerMode="none">
         <Tasks.Screen name={'Görevlerim'} component={MyTasksScreen} />
         <Tasks.Screen name={'Görev'} component={TasksScreen} />
         <Tasks.Screen name={'Ödül'} component={RewardScreen} />
@@ -86,7 +86,7 @@ const TasksNavigator = () => (
 
 const Profile = createStackNavigator();
 const ProfileNavigator = () => (
-    <Profile.Navigator>
+    <Profile.Navigator headerMode="none">
         <Profile.Screen name={'Profil'} component={ProfileScreen} />
         <Profile.Screen name={'Profil Düzenle'} component={EditProfileScreen} />
         <Profile.Screen name={'Parola Değiştir'} component={ChangePasswordScreen} />
@@ -95,7 +95,7 @@ const ProfileNavigator = () => (
 
 const Dashboard = createStackNavigator();
 const DashboardNavigator = () => (
-    <Dashboard.Navigator>
+    <Dashboard.Navigator headerMode="none" >
         <Dashboard.Screen name={'Anasayfa'} component={DashboardScreen} />
     </Dashboard.Navigator>
 )
