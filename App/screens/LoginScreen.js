@@ -4,10 +4,10 @@ import { CheckBox } from 'native-base';
 import { LoginInput } from '../components/inputs';
 import { LoginButtons } from '../components/buttons';
 import LG from 'react-native-linear-gradient';
-import { KeyboardAvoidingView } from '../components/extra';
+import { KeyboardAvoidingView } from '../components/KeyboardAvoidingView';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-import { setUserToken } from '../../redux/actions/dataAction';
+import { setUserToken } from '../redux/actions/dataAction';
 
 import { connect } from 'react-redux';
 
