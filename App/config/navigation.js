@@ -85,8 +85,8 @@ const Profile = createStackNavigator();
 const ProfileNavigator = () => (
     <Profile.Navigator>
         <Profile.Screen name={'Profil'} component={ProfileScreen} />
-        <Profile.Screen name={'Edit Profile'} component={EditProfileScreen} />
-        <Profile.Screen name={'Change Password'} component={ChangePasswordScreen} />
+        <Profile.Screen name={'Profil Düzenle'} component={EditProfileScreen} />
+        <Profile.Screen name={'Parola Değiştir'} component={ChangePasswordScreen} />
     </Profile.Navigator>
 )
 
@@ -118,8 +118,8 @@ const OptionsNavigator = () => (
 const Drawer = createDrawerNavigator();
 const MainNavigator = () => (
     <Drawer.Navigator headerMode="none">
-        <Drawer.Screen name="Report" component={TabNavigator} />
-        <Drawer.Screen name="Options" component={OptionsNavigator} />
+        <Drawer.Screen name="Rapor" component={TabNavigator} />
+        <Drawer.Screen name="Ayarlar" component={OptionsNavigator} />
     </Drawer.Navigator>
 );
 
