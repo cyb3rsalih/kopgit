@@ -1,4 +1,6 @@
 import React from 'react';
+import { SafeAreaView } from 'react-native';
+
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -26,6 +28,9 @@ import EditProfileScreen from '../screens/EditProfileScreen'
 import ChangePasswordScreen from '../screens/ChangePasswordScreen'
 
 import OptionsScreen from '../screens/OptionsScreen'
+
+import { BottomNavigation, BottomNavigationTab, Icon } from '@ui-kitten/components';
+
 /** 
  * TODO SCREENS
  * 
@@ -91,13 +96,33 @@ const ProfileNavigator = () => (
 const Dashboard = createStackNavigator();
 const DashboardNavigator = () => (
     <Dashboard.Navigator>
-        <Dashboard.Screen name={'Anasayfa'} component={MainScreen} />
+        <Dashboard.Screen name={'Anasayfa'} component={DashboardScreen} />
     </Dashboard.Navigator>
 )
 
 const Tabs = createBottomTabNavigator();
+
+const BottomTabBar = ({ navigation, state }) => {
+
+    const onSelect = (index) => {
+        navigation.navigate(state.routeNames[index]);
+    };
+
+    return (
+        <SafeAreaView>
+            <BottomNavigation selectedIndex={state.index} onSelect={onSelect}>
+                <BottomNavigationTab icon={props => (<Icon name="book-open" {...props} />)} title='Anasayfa' />
+                <BottomNavigationTab icon={props => (<Icon name="person" {...props} />)} title='Profilim' />
+                <BottomNavigationTab icon={props => (<Icon name="checkmark-square" {...props} />)} title='Görevlerim' />
+                <BottomNavigationTab icon={props => (<Icon name="done-all" {...props} />)} title='Raporlarım' />
+                <BottomNavigationTab icon={props => (<Icon name="paper-plane" {...props} />)} title='Sorularım' />
+            </BottomNavigation>
+        </SafeAreaView>
+    );
+};
+
 const TabNavigator = () => (
-    <Tabs.Navigator>
+    <Tabs.Navigator tabBar={props => <BottomTabBar {...props} />}>
         <Tabs.Screen name={'Anasayfa'} component={DashboardNavigator} />
         <Tabs.Screen name={'Profilim'} component={ProfileNavigator} />
         <Tabs.Screen name={'Görevlerim'} component={TasksNavigator} />
