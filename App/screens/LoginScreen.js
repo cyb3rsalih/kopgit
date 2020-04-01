@@ -26,11 +26,11 @@ LoginScreen = ({ navigation, data, dispatch }) => {
     };
 
     const onSignUpButtonPress = () => {
-        navigation && navigation.navigate('Register');
+        navigation && navigation.navigate('RegisterScreen');
     };
 
     const onForgotPasswordButtonPress = () => {
-        navigation && navigation.navigate('ForgotPassword');
+        navigation && navigation.navigate('ForgotPasswordScreen');
     };
 
     const onPasswordIconPress = () => {
