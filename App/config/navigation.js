@@ -29,7 +29,7 @@ import ChangePasswordScreen from '../screens/ChangePasswordScreen'
 
 import OptionsScreen from '../screens/OptionsScreen'
 
-import { BottomNavigation, BottomNavigationTab, Icon } from '@ui-kitten/components';
+import { BottomNavigation, BottomNavigationTab, Drawer as UIKittenDrawer, Icon, DrawerHeaderFooter, Layout } from '@ui-kitten/components';
 
 /** 
  * TODO SCREENS
@@ -139,8 +139,45 @@ const OptionsNavigator = () => (
 )
 
 const Drawer = createDrawerNavigator();
+
+const Header = () => (
+    <DrawerHeaderFooter
+        title='Ahmet Ündemir'
+        description='5.Seviye - Okuyucu'
+        icon={props => (<Icon name="person" {...props} />)}
+    />
+);
+
+const drawerData = [
+    { title: 'Anasayfa' },
+    { title: 'Sorularım' },
+    { title: 'Görevlerim' },
+    { title: 'Ayarlar' },
+    { title: 'Raporlarım' },
+    { title: 'Çıkış' },
+];
+
+const DrawerContent = ({ navigation, state }) => {
+
+    const onSelect = (index) => {
+        navigation.navigate(drawerData[index].title);
+    };
+
+    return (
+        <Layout style={{ paddingTop: 30, flex: 1 }}>
+            <UIKittenDrawer
+                data={drawerData}
+                header={Header}
+                selectedIndex={state.index}
+                onSelect={onSelect}
+            />
+        </Layout>
+    );
+};
+
+
 const MainNavigator = () => (
-    <Drawer.Navigator headerMode="none">
+    <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />} headerMode="none">
         <Drawer.Screen name="Rapor" component={TabNavigator} />
         <Drawer.Screen name="Ayarlar" component={OptionsNavigator} />
     </Drawer.Navigator>
