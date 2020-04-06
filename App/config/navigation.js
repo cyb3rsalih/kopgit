@@ -31,6 +31,8 @@ import OptionsScreen from '../screens/OptionsScreen'
 
 import { BottomNavigation, BottomNavigationTab, Drawer as UIKittenDrawer, Icon, DrawerHeaderFooter, Layout } from '@ui-kitten/components';
 
+import { stackStyles } from '../config/functions'
+
 /** 
  * TODO SCREENS
  * 
@@ -95,8 +97,8 @@ const ProfileNavigator = () => (
 
 const Dashboard = createStackNavigator();
 const DashboardNavigator = () => (
-    <Dashboard.Navigator headerMode="none" >
-        <Dashboard.Screen name={'Anasayfa'} component={DashboardScreen} />
+    <Dashboard.Navigator>
+        <Dashboard.Screen options={stackStyles("LAAAAN")} name={'Anasayfa'} component={DashboardScreen} />
     </Dashboard.Navigator>
 )
 
