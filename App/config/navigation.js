@@ -33,33 +33,10 @@ import { BottomNavigation, BottomNavigationTab, Drawer as UIKittenDrawer, Icon, 
 
 import { stackStyles } from '../config/functions'
 
-/** 
- * TODO SCREENS
- * 
- * SUPPORT
- * * NewSupportRequest
- * * MyQuestions
- * * FAQ
- *
- * REPORT
- * * MyReports
- * * NewReport
- * 
- * TASKS
- * * MyTasks
- * * Task
- * * Reward
- * 
- * PROFILE
- * * Profil
- * * EditProfile
- * * ChangePassword
-
-*/
 const Support = createStackNavigator();
 const SupportNavigator = () => (
 
-    <Support.Navigator headerMode="none">
+    <Support.Navigator screenOptions={stackStyles({ title: "Raporlarım" })}>
         <Support.Screen name={'Yeni Soru'} component={NewSupportRequestScreen} />
         <Support.Screen name={'Sorularım'} component={MyQuestionsScreen} />
         <Support.Screen name={'Sıkça Sorulan Sorular'} component={FAQScreen} />
@@ -70,7 +47,7 @@ const SupportNavigator = () => (
 const Report = createStackNavigator();
 const ReportNavigator = () => (
 
-    <Report.Navigator headerMode="none">
+    <Report.Navigator screenOptions={stackStyles({ title: "Raporlarım" })}>
         <Report.Screen name={'Geçmiş Raporlar'} component={MyReportsScreen} />
         <Report.Screen name={'Yeni Rapor Girişi'} component={NewReportScreen} />
     </Report.Navigator>
@@ -79,7 +56,7 @@ const ReportNavigator = () => (
 
 const Tasks = createStackNavigator();
 const TasksNavigator = () => (
-    <Tasks.Navigator headerMode="none">
+    <Tasks.Navigator screenOptions={stackStyles({ title: "Görevlerim" })}>
         <Tasks.Screen name={'Görevlerim'} component={MyTasksScreen} />
         <Tasks.Screen name={'Görev'} component={TasksScreen} />
         <Tasks.Screen name={'Ödül'} component={RewardScreen} />
@@ -88,7 +65,7 @@ const TasksNavigator = () => (
 
 const Profile = createStackNavigator();
 const ProfileNavigator = () => (
-    <Profile.Navigator headerMode="none">
+    <Profile.Navigator screenOptions={stackStyles({ title: "Profilim" })} >
         <Profile.Screen name={'Profil'} component={ProfileScreen} />
         <Profile.Screen name={'Profil Düzenle'} component={EditProfileScreen} />
         <Profile.Screen name={'Parola Değiştir'} component={ChangePasswordScreen} />
@@ -98,7 +75,7 @@ const ProfileNavigator = () => (
 const Dashboard = createStackNavigator();
 const DashboardNavigator = () => (
     <Dashboard.Navigator>
-        <Dashboard.Screen options={stackStyles("LAAAAN")} name={'Anasayfa'} component={DashboardScreen} />
+        <Dashboard.Screen options={stackStyles({ title: "Dashboard" })} name={'Anasayfa'} component={DashboardScreen} />
     </Dashboard.Navigator>
 )
 
@@ -218,7 +195,7 @@ const AppNavigator = ({ data, dispatch }) => {
     React.useEffect(() => {
         setTimeout(() => {
             dispatch(loading(false));
-        }, 500);
+        }, 1000);
     }, []);
 
     if (data.isLoading) {

@@ -5,9 +5,14 @@ import {
     TopNavigationAction, Icon
 } from '@ui-kitten/components';
 
-
-
 DashboardScreen = ({ navigation }) => {
+
+
+    React.useEffect(() => {
+
+        //navigation.setOptions({ title: 'Updated!' })
+
+    }, []);
 
     return (
         <React.Fragment>
