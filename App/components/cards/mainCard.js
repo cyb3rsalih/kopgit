@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 	container: {
 		width: wp('90%'),
 		minHeight: hp('20%'),
-		marginBottom: hp('3%')
+		margin: hp('2.5%')
 	},
 	leftContainer: {
 		flex: 1,
@@ -43,9 +43,9 @@ const styles = StyleSheet.create({
 	},
 	contentContainer: {
 		flex: 9,
-		backgroundColor: '#f5f5f5',
+		backgroundColor: '#fff',
 		borderWidth: 1,
-		borderColor: '#3BB195',
+		borderColor: '#522d5b',
 		borderBottomLeftRadius: hp('2%'),
 		borderTopLeftRadius: hp('2%')
 	},
@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		paddingLeft: wp('2%'),
-		paddingRight: wp('2%')
+		paddingRight: wp('2%'),
+		marginBottom: hp('1%')
 	},
 	contentText: {
 		padding: hp('1%'),
@@ -63,11 +64,11 @@ const styles = StyleSheet.create({
 		marginTop: hp('2%')
 	},
 	pointText: {
-		color: '#3BB195'
+		color: '#522d5b'
 	},
 	buttonContainer: {
 		width: wp('25%'),
-		backgroundColor: '#3BB195',
+		backgroundColor: '#522d5b',
 		alignItems: 'center',
 		padding: hp('0.7%'),
 		borderRadius: hp('3%')
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
 	},
 	rightContainer: {
 		flex: 1,
-		backgroundColor: '#3BB195',
+		backgroundColor: '#522d5b',
 		borderTopRightRadius: hp('2%'),
 		borderBottomRightRadius: hp('2%'),
 		alignItems: 'center',
@@ -89,19 +90,19 @@ const styles = StyleSheet.create({
 	},
 	headerContainer: {
 		width: wp('40%'),
-		height: hp('5%'),
+		height: hp('4%'),
 		position: 'absolute',
 		marginLeft: wp('5%'),
-		marginTop: hp('-2.5%'),
+		marginTop: hp('-2%'),
 		borderWidth: 1,
-		borderColor: '#3BB195',
+		borderColor: '#522d5b',
 		borderRadius: hp('2.5%'),
-		backgroundColor: '#f5f5f5',
+		backgroundColor: '#fff',
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
 	headerText: {
 		fontSize: hp('2.2%'),
-		color: '#3BB195'
+		color: '#522d5b'
 	}
 });
