@@ -26,7 +26,7 @@ const RootStackScreen = ({ userToken }) => (
 		) : (
 			<RootStack.Screen
 				name={'Auth'}
-				component={MissionScreen}
+				component={AuthNavigator}
 				options={{
 					animationEnabled: false
 				}}
