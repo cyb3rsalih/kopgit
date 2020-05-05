@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import AppNavigator from './config/navigation';
@@ -15,8 +15,7 @@ import { StatusBar } from 'react-native';
 const themes = { light, dark };
 
 function App() {
-
-	const [theme, setTheme] = React.useState('light');
+	const [ theme, setTheme ] = React.useState('light');
 	const currentTheme = themes[theme];
 
 	const toggleTheme = () => {
@@ -32,7 +31,7 @@ function App() {
 					<Redux store={store}>
 						<SafeAreaProvider>
 							<NavigationContainer>
-								<StatusBar barStyle='light-content' />
+								<StatusBar barStyle="light-content" />
 								<AppNavigator />
 							</NavigationContainer>
 						</SafeAreaProvider>
@@ -44,4 +43,3 @@ function App() {
 }
 
 export default App;
-
