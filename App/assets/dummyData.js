@@ -97,8 +97,40 @@ export const dummyData = [
 		readingBook: 'Şualar',
 		pageCount: 22,
 		haveReport: false
+	},
+	{
+		id: 15,
+		date: '03.05.2020',
+		readingBook: 'Şualar',
+		pageCount: 22,
+		haveReport: false
+	},
+	{
+		id: 16,
+		date: '03.05.2020',
+		readingBook: 'Şualar',
+		pageCount: 22,
+		haveReport: false
+	},
+	{
+		id: 17,
+		date: '03.05.2020',
+		readingBook: 'Şualar',
+		pageCount: 22,
+		haveReport: false
 	}
 ];
 
 //* Rapor ekranı görüntülenme yılları
 export const data = [ { text: '2019' }, { text: '2020' } ];
+
+//* Rapor giriş ekranındaki Okunan kitaplar listesi
+export const dataBook = [
+	{ text: 'Şualar' },
+	{ text: 'Şualar' },
+	{ text: 'Şualar' },
+	{ text: 'Şualar' },
+	{ text: 'Şualar' },
+	{ text: 'Şualar' },
+	{ text: 'Şualar' }
+];

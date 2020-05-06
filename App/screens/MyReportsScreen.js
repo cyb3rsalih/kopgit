@@ -19,32 +19,32 @@ export const openWidth = backButtonWidth;
 export const fontSize = 18;
 export const padding = 0;
 
-//* Swiper-Detay onPress Fonksiyonu
-const handleInfo = (item) => {
-	// * Detay sayfası rapor giriş ekranı ile aynı olacakmış!!
-	props.navigation.navigate('Yeni Rapor Girişi');
-};
-
-//* Swiper-Sil işlemi onPress Fonksiyonu
-const handleDelete = (item) => {
-	//TODO Swiper "SİL" işlemi için fonksiyon yazılacak.
-};
-
-//* Swiper için Render olacak Item
-const Item = (item) => {
-	return (
-		<Layout style={styles.listContainer}>
-			<Text style={styles.listFonts}>{item.date}</Text>
-			<Text style={styles.listFonts}>{item.readingBook}</Text>
-			<Text style={styles.listFonts}>{item.pageCount}</Text>
-			<AntDesign name="swap" style={styles.swapText} />
-		</Layout>
-	);
-};
-
 MyReportsScreen = (props) => {
 	//* Görüntülenme yılını tutuyor.
 	const [ selectYear, setSelectYear ] = React.useState(null);
+
+	//* Swiper-Detay onPress Fonksiyonu
+	const handleInfo = (item) => {
+		// * Detay sayfası rapor giriş ekranı ile aynı olacakmış!!
+		props.navigation.navigate('Yeni Rapor Girişi');
+	};
+
+	//* Swiper-Sil işlemi onPress Fonksiyonu
+	const handleDelete = (item) => {
+		//TODO Swiper "SİL" işlemi için fonksiyon yazılacak.
+	};
+
+	//* Swiper için Render olacak Item
+	const Item = (item) => {
+		return (
+			<Layout style={styles.listContainer}>
+				<Text style={styles.listFonts}>{item.date}</Text>
+				<Text style={styles.listFonts}>{item.readingBook}</Text>
+				<Text style={styles.listFonts}>{item.pageCount}</Text>
+				<AntDesign name="swap" style={styles.swapText} />
+			</Layout>
+		);
+	};
 
 	return (
 		<Layout style={styles.container}>
