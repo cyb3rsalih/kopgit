@@ -1,12 +1,10 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import MainScreen from '../screens/MainScreen'; // Kalkacak
 import Splash from '../screens/Splash';
 
 import RegisterScreen from '../screens/RegisterScreen';
