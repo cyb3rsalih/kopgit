@@ -5,6 +5,7 @@ import FontsAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Text, Layout, Input, Select, Button } from '@ui-kitten/components';
+import { KeyboardAvoidingView } from '../components/KeyboardAvoidingView';
 
 ProfileScreen = () => {
 	const [ selectCountry, setSelectCountry ] = React.useState();
@@ -15,7 +16,7 @@ ProfileScreen = () => {
 	const sehirler = [ { text: 'İstanbul' }, { text: 'Sakarya' }, { text: 'Trabzon' } ];
 	const cinsiyet = [ { text: 'Erkek' }, { text: 'Kadın' } ];
 	return (
-		<React.Fragment>
+		<KeyboardAvoidingView>
 			<Layout style={styles.container}>
 				<Layout style={styles.header}>
 					<Layout style={{ backgroundColor: 'transparent' }}>
@@ -103,43 +104,14 @@ ProfileScreen = () => {
 							name="book-open-page-variant"
 							style={{ fontSize: hp('5%'), color: '#be8abf' }}
 						/>
-						<Text>Toplam Sayfa Sayısı</Text>
+						<Text>Okunan Sayfa</Text>
 						<Text style={{ fontSize: hp('3%'), lineHeight: hp('3%'), padding: hp('1%'), color: '#633a82' }}>
 							578
 						</Text>
 					</Layout>
-				</Layout>
-				<Layout
-					style={{ width: wp('90%'), height: hp('50%'), justifyContent: 'space-between', padding: hp('2%') }}
-				>
-					<Input status="info" placeholder="Adınız" />
-					<Input status="info" placeholder="Soyadınız" />
-					<Input status="info" placeholder="E-Posta" />
-					<Select
-						data={ulkeler}
-						selectedOption={selectCountry}
-						onSelect={setSelectCountry}
-						placeholder="Ülke"
-						status="info"
-					/>
-					<Select
-						data={sehirler}
-						selectedOption={selectCity}
-						onSelect={setSelectCity}
-						placeholder="Şehir"
-						status="info"
-					/>
-					<Select
-						data={cinsiyet}
-						selectedOption={selectGender}
-						onSelect={setSelectGender}
-						placeholder="Cinsiyet"
-						status="info"
-					/>
-					<Button status="info">Kaydet</Button>
-				</Layout>
+				</Layout>				
 			</Layout>
-		</React.Fragment>
+		</KeyboardAvoidingView>					
 	);
 };
 
