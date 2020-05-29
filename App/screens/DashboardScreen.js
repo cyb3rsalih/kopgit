@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet,TouchableOpacity } from 'react-native';
 import { Text, Layout } from '@ui-kitten/components';
 import { connect } from 'react-redux';
 
@@ -11,16 +11,16 @@ DashboardScreen = (props) => {
 	return (
 		<React.Fragment>
 			<Layout style={styles.container}>
-				<Text>AT</Text>
+				<TouchableOpacity onPress={() => console.log(props.data)} >
+				<Text>DEBUG</Text>	
+				</TouchableOpacity>
 			</Layout>
 		</React.Fragment>
 	);
 };
 
 const mapStateToProps = (state) => {
-	return {
-		state
-	};
+	return state;
 };
 
 export default connect(mapStateToProps)(DashboardScreen);

@@ -13,12 +13,12 @@ import {
 
   } from 'react-native-indicators';
   
-import { loginUser } from '../redux/actions/dataAction';
+import { loginUser,setUserToken } from '../redux/actions/dataAction';
 
 LoginScreen = (props) => {
 	const { navigation, data, dispatch } = props;
-	const [ email, setEmail ] = React.useState();
-	const [ password, setPassword ] = React.useState();
+	const [ email, setEmail ] = React.useState('merkan7@hotmail.com'); // TODO: REMOVE IN PRODUCTION
+	const [ password, setPassword ] = React.useState('parola');  // TODO: REMOVE IN PRODUCTION
 	const [ passwordVisible, setPasswordVisible ] = React.useState(false);
 
 	const onSignInButtonPress = async () => {
@@ -27,12 +27,17 @@ LoginScreen = (props) => {
 			password
 		};
 		try {
-			await dispatch(loginUser(JSON.stringify(userData)));
-			if (props.state.data.isSuccess) {
-				await AsyncStorage.setItem('TOKEN', props.state.data.token);
-				await AsyncStorage.setItem('LOGIN', props.state.data);
-				API.defaults.headers.common['Authorization'] = `Bearer ${props.state.data.token}`;
+			
+			dispatch(loginUser(JSON.stringify(userData))).then(({action,value}) => {
+			
+			if (value.isSuccess) {
+				AsyncStorage.setItem('TOKEN', value.token);
+				AsyncStorage.setItem('INFO', JSON.stringify(value.user));
+				API.defaults.headers.common['Authorization'] = `Bearer ${value.token}`;
+				dispatch(setUserToken(value.token)) // Auto-Redirect to Dashboard
 			}
+			})			
+		
 		} catch (e) {
 			console.log(e);
 		}
