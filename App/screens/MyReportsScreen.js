@@ -1,20 +1,20 @@
-import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { Layout, Text } from '@ui-kitten/components';
 
 MyReportsScreen = () => {
+	return (
+		<Layout style={styles.container}>
+			<Layout />
+		</Layout>
+	);
+};
 
-    return (
-        <View style={styles.container} >
-            <Text>MyReports Screen</Text>
-        </View>
-    )
-}
-
-export default MyReportsScreen
+export default MyReportsScreen;
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-})
+	container: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center'
+	}
+});

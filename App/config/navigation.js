@@ -30,6 +30,8 @@ import ChangePasswordScreen from '../screens/ChangePasswordScreen';
 
 import OptionsScreen from '../screens/OptionsScreen';
 
+import LogoutScreen from '../screens/LogoutScreen';
+
 import {
 	BottomNavigation,
 	BottomNavigationTab,
@@ -120,6 +122,13 @@ const OptionsNavigator = () => (
 	</Options.Navigator>
 );
 
+const Logout = createStackNavigator();
+const LogoutNavigator = () => (
+	<Logout.Navigator  headerMode='none'>
+		<Logout.Screen name="Logout" component={LogoutScreen} />
+	</Logout.Navigator>
+);
+
 const Drawer = createDrawerNavigator();
 
 const Header = () => (
@@ -155,6 +164,7 @@ const MainNavigator = () => (
 	<Drawer.Navigator drawerContent={(props) => <DrawerContent {...props} />} headerMode="none">
 		<Drawer.Screen name="Rapor" component={TabNavigator} />
 		<Drawer.Screen name="Ayarlar" component={OptionsNavigator} />
+		<Drawer.Screen name="Çıkış" component={LogoutNavigator} />
 	</Drawer.Navigator>
 );
 
@@ -190,13 +200,14 @@ import { loading } from '../redux/actions/dataAction';
 import { connect } from 'react-redux';
 
 const AppNavigator = ({ data, dispatch }) => {
-	React.useEffect(() => {
-		setTimeout(() => {
-			dispatch(loading(false));
-		}, 1000);
-	}, []);
+	// SADECE SPLASH EKRAN BEKLEMESİ İÇİN GEREKLİ 
+	// React.useEffect(() => {
+	// 	setTimeout(() => {
+	// 		dispatch(loading(false));
+	// 	}, 1000);
+	// }, []);
 
-	if (data.isLoading) {
+	if (!data.isReady) { // Control for token.
 		return <Splash />;
 	}
 

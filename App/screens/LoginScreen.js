@@ -1,52 +1,41 @@
 import React from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Button, Input, Text } from '@ui-kitten/components';
+import { Button, Input, Text,Icon } from '@ui-kitten/components';
 import { EyeIcon, EyeOffIcon, PersonIcon } from '../components/icons';
 import { KeyboardAvoidingView } from '../components/KeyboardAvoidingView';
 import { connect } from 'react-redux';
-import { setUserToken, setUserProfileInfos } from '../redux/actions/dataAction';
 import LG from 'react-native-linear-gradient';
 import API from '../config/API';
-import axios from 'axios';
-import { loginUrl } from '../config/urls';
+import {
 
-LoginScreen = ({ navigation, data, dispatch }) => {
+	PacmanIndicator,
+
+  } from 'react-native-indicators';
+  
+import { loginUser } from '../redux/actions/dataAction';
+
+LoginScreen = (props) => {
+	const { navigation, data, dispatch } = props;
 	const [ email, setEmail ] = React.useState();
 	const [ password, setPassword ] = React.useState();
 	const [ passwordVisible, setPasswordVisible ] = React.useState(false);
 
 	const onSignInButtonPress = async () => {
-		const url = loginUrl;
+		const userData = {
+			email,
+			password
+		};
 		try {
-			const response = await axios({
-				method: 'post',
-				url,
-				data: {
-					email,
-					password
-				}
-			});
-			const token = response.data.token;
-			const userInfos = response.data.user;
-			await AsyncStorage.setItem('@token', token);
-			dispatch(setUserToken(token));
-			dispatch(setUserProfileInfos(userInfos));
-		} catch (error) {
-			if (error) {
-				console.log(error.response.data.errors);
-				//TODO Dönen hata mesajları için modal eklenecek.
+			await dispatch(loginUser(JSON.stringify(userData)));
+			if (props.state.data.isSuccess) {
+				await AsyncStorage.setItem('TOKEN', props.state.data.token);
+				await AsyncStorage.setItem('LOGIN', props.state.data);
+				API.defaults.headers.common['Authorization'] = `Bearer ${props.state.data.token}`;
 			}
+		} catch (e) {
+			console.log(e);
 		}
-		//navigation && navigation.goBack();
-		//navigation && navigation.navigate('Profile');
-
-		// Redux training
-		// try {
-		//   res = await dispatch(heloRedux());
-		// } catch (e) {
-		//   alert(e);
-		// }
 	};
 
 	const onSignUpButtonPress = () => {
@@ -68,9 +57,12 @@ LoginScreen = ({ navigation, data, dispatch }) => {
 					<Text category="h1" status="control">
 						Kopgit
 					</Text>
-					<Text style={styles.signInLabel} category="s1" status="control">
-						Giriş Yap
-					</Text>
+				
+					{!data.isFetching 
+					?
+						(<Text style={styles.signInLabel} category="s1" status="control">Giriş Yap</Text>) 
+					:
+					  <PacmanIndicator color='#fff' /> }
 				</View>
 				<View style={styles.formContainer}>
 					<Input
@@ -105,7 +97,7 @@ LoginScreen = ({ navigation, data, dispatch }) => {
 				<Button style={styles.signInButton} status="control" size="giant" onPress={onSignInButtonPress}>
 					GİRİŞ YAP
 				</Button>
-				<Button style={styles.signUpButton} appearance="ghost" status="control" onPress={onSignUpButtonPress}>
+				<Button  style={styles.signUpButton} appearance="ghost" status="control" onPress={onSignUpButtonPress}>
 					Hesabın yok mu? Kayıt Ol
 				</Button>
 			</LG>

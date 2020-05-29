@@ -1,9 +1,9 @@
 import axios from 'axios';
-const prod = 'https://api.sozlerkosku.com.tr/api';
+const prod = 'https://kopgitapi.atalayemrah.com/api';
 const local = 'http://localhost:3000';
 
 let API = axios.create({
-	baseURL: `${local}`,
+	baseURL: `${prod}`,
 	responseType: 'json',
 	headers: {
 		'content-type': 'application/json; charset=utf-8'

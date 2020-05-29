@@ -1,10 +1,20 @@
-import { LOADING, SET_USER_TOKEN, SET_USER_PROFILE_INFOS } from '../actions/dataAction';
+import {
+	SET_USER_TOKEN,
+	SET_USER_PROFILE_INFO,
+	LOGIN,
+	LOGIN_FULFILLED,
+	LOGIN_PENDING,
+	LOGIN_REJECTED,
+	READY
+} from '../actions/dataAction';
 
 const initialState = {
-	isLoading: true,
+	isReady:false,
+	isSuccess: false,
+	isFetching: false,
 	userToken: null,
-	userInfos: null,
-	gradientColorStyles: [ '#555555', '#000000' ]
+	userInfo: null,
+	gradientColorStyles: [ '#000000', '#8877ff' ]
 };
 
 export default (state = initialState, action) => {
@@ -14,16 +24,47 @@ export default (state = initialState, action) => {
 				...state,
 				userToken: action.payload
 			};
-		case SET_USER_PROFILE_INFOS:
+		case SET_USER_PROFILE_INFO:
 			return {
 				...state,
-				userInfos: action.payload
+				userInfo: action.payload
 			};
-		case LOADING:
+		case LOGIN:
+			return {
+				...state
+			};
+
+		case LOGIN_FULFILLED:
+			const { user, token, isSuccess } = action.payload;
+			console.log('filled');
 			return {
 				...state,
-				isLoading: action.payload
+				userInfo: user,
+				userToken: token,
+				isSuccess,
+				isFetching:false
 			};
+
+		case LOGIN_PENDING:
+			console.log('pending');
+			return {
+				...state,
+				isFetching:true
+			};
+
+		case LOGIN_REJECTED:
+			console.log('reject');
+			return {
+				...state,
+				isSuccess: false,
+				isFetching:false
+			};
+		case READY:
+			return{
+				...state,
+				isReady:action.payload
+			}
+
 		default:
 			return state;
 	}
