@@ -1,13 +1,19 @@
 import React from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Button, Input, Text } from '@ui-kitten/components';
+import { Button, Input, Text,Icon } from '@ui-kitten/components';
 import { EyeIcon, EyeOffIcon, PersonIcon } from '../components/icons';
 import { KeyboardAvoidingView } from '../components/KeyboardAvoidingView';
 import { connect } from 'react-redux';
-import { loginUser } from '../redux/actions/dataAction';
 import LG from 'react-native-linear-gradient';
 import API from '../config/API';
+import {
+
+	PacmanIndicator,
+
+  } from 'react-native-indicators';
+  
+import { loginUser } from '../redux/actions/dataAction';
 
 LoginScreen = (props) => {
 	const { navigation, data, dispatch } = props;
@@ -51,9 +57,12 @@ LoginScreen = (props) => {
 					<Text category="h1" status="control">
 						Kopgit
 					</Text>
-					<Text style={styles.signInLabel} category="s1" status="control">
-						Giriş Yap
-					</Text>
+				
+					{!data.isFetching 
+					?
+						(<Text style={styles.signInLabel} category="s1" status="control">Giriş Yap</Text>) 
+					:
+					  <PacmanIndicator color='#fff' /> }
 				</View>
 				<View style={styles.formContainer}>
 					<Input
@@ -88,7 +97,7 @@ LoginScreen = (props) => {
 				<Button style={styles.signInButton} status="control" size="giant" onPress={onSignInButtonPress}>
 					GİRİŞ YAP
 				</Button>
-				<Button style={styles.signUpButton} appearance="ghost" status="control" onPress={onSignUpButtonPress}>
+				<Button  style={styles.signUpButton} appearance="ghost" status="control" onPress={onSignUpButtonPress}>
 					Hesabın yok mu? Kayıt Ol
 				</Button>
 			</LG>

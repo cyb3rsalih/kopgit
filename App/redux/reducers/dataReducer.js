@@ -1,19 +1,20 @@
 import {
-	LOADING,
 	SET_USER_TOKEN,
-	SET_USER_PROFILE_INFOS,
+	SET_USER_PROFILE_INFO,
 	LOGIN,
 	LOGIN_FULFILLED,
 	LOGIN_PENDING,
-	LOGIN_REJECTED
+	LOGIN_REJECTED,
+	READY
 } from '../actions/dataAction';
 
 const initialState = {
+	isReady:false,
 	isSuccess: false,
-	isLoading: true,
+	isFetching: false,
 	userToken: null,
-	userInfos: null,
-	gradientColorStyles: [ '#555555', '#000000' ]
+	userInfo: null,
+	gradientColorStyles: [ '#000000', '#8877ff' ]
 };
 
 export default (state = initialState, action) => {
@@ -23,15 +24,10 @@ export default (state = initialState, action) => {
 				...state,
 				userToken: action.payload
 			};
-		case SET_USER_PROFILE_INFOS:
+		case SET_USER_PROFILE_INFO:
 			return {
 				...state,
-				userInfos: action.payload
-			};
-		case LOADING:
-			return {
-				...state,
-				isLoading: action.payload
+				userInfo: action.payload
 			};
 		case LOGIN:
 			return {
@@ -43,23 +39,31 @@ export default (state = initialState, action) => {
 			console.log('filled');
 			return {
 				...state,
-				userInfos: user,
+				userInfo: user,
 				userToken: token,
-				isSuccess
+				isSuccess,
+				isFetching:false
 			};
 
 		case LOGIN_PENDING:
 			console.log('pending');
 			return {
-				...state
+				...state,
+				isFetching:true
 			};
 
 		case LOGIN_REJECTED:
 			console.log('reject');
 			return {
 				...state,
-				isSuccess: false
+				isSuccess: false,
+				isFetching:false
 			};
+		case READY:
+			return{
+				...state,
+				isReady:action.payload
+			}
 
 		default:
 			return state;

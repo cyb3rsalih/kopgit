@@ -10,7 +10,6 @@ DashboardScreen = (props) => {
 
 	return (
 		<React.Fragment>
-			<Layout />
 			<Layout style={styles.container}>
 				<Text>AT</Text>
 			</Layout>
