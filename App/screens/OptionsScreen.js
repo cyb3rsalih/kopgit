@@ -12,7 +12,7 @@ OptionsScreen = ({ navigation, data, dispatch }) => {
             <Setting
                 style={styles.setting}
                 hint='Bilgilerimi Düzenle'
-                onPress={() => alert(1)}
+                onPress={() => navigation.navigate('Profil')}
             />
             <Setting
                 style={styles.setting}
