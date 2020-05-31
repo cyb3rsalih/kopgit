@@ -1,5 +1,4 @@
 import React from 'react';
-import {Text} from 'react-native'
 import { SafeAreaView } from 'react-native';
 
 import { createStackNavigator } from '@react-navigation/stack';
@@ -197,7 +196,6 @@ const RootStackScreen = ({ userToken }) => (
 
 import { loading } from '../redux/actions/dataAction';
 import { connect } from 'react-redux';
-import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 
 const AppNavigator = ({ data, dispatch }) => {
 	// SADECE SPLASH EKRAN BEKLEMESİ İÇİN GEREKLİ 

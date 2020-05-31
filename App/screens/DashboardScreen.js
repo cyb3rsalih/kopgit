@@ -11,7 +11,7 @@ DashboardScreen = (props) => {
 	return (
 		<React.Fragment>
 			<Layout style={styles.container}>
-				<TouchableOpacity onPress={() => console.log(props.data)} >
+				<TouchableOpacity onPress={() => props.navigation.navigate('Profilim')} >
 				<Text>DEBUG</Text>	
 				</TouchableOpacity>
 			</Layout>

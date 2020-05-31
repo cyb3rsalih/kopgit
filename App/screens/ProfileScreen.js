@@ -19,7 +19,7 @@ ProfileScreen = () => {
 		<KeyboardAvoidingView>
 			<Layout style={styles.container}>
 				<Layout style={styles.header}>
-					<Layout style={{ backgroundColor: 'transparent' }}>
+					<Layout style={{ backgroundColor: 'transparent',marginTop:hp('1%') }}>
 						<Image
 							source={require('../assets/kopgitLogo.png')}
 							style={{
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	header: {
-		height: hp('20%'),
+		height: hp('40%'),
 		width: wp('100%'),
 		justifyContent: 'center',
 		alignItems: 'center',
