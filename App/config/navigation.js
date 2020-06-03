@@ -43,7 +43,7 @@ import { stackStyles } from '../config/functions';
 
 const Support = createStackNavigator();
 const SupportNavigator = () => (
-	<Support.Navigator screenOptions={stackStyles({ title: 'Raporlarım' })}>
+	<Support.Navigator screenOptions={stackStyles({ title: 'Destek' })}>
 		<Support.Screen name={'Yeni Soru'} component={NewSupportRequestScreen} />
 		<Support.Screen name={'Sorularım'} component={MyQuestionsScreen} />
 		<Support.Screen name={'Sıkça Sorulan Sorular'} component={FAQScreen} />
@@ -174,8 +174,6 @@ const AuthNavigator = () => (
 		<AuthStack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen} />
 	</AuthStack.Navigator>
 );
-
-//TODO AsyncStorage'de token varsa login sayfasına girmeden Dashboard'a geçecek.
 
 const RootStack = createStackNavigator();
 const RootStackScreen = ({ userToken }) => (

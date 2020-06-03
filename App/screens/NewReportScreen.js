@@ -3,10 +3,17 @@ import { StyleSheet, View } from 'react-native';
 import { Layout, Card, CardHeader, Button, Datepicker, Icon, Input, Select, Text } from '@ui-kitten/components';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { dataBook } from '../assets/dummyData';
+import {connect} from 'react-redux'
+
+import { addUserReport} from '../redux/actions/dataAction';
 
 NewReportScreen = (props) => {
+	const { dispatch,navigation } = props
+	const maxDate = new Date();
+	const minDate = new Date(); // 1 week range
+	minDate.setDate(new Date().getDate()-6);
 	//* Rapor tarihini tutuyor
-	const [ date, setDate ] = React.useState(null);
+	const [ selectedDate, setSelectedDate ] = React.useState(new Date());
 	//* Okunan kitabı tutuyor
 	const [ selectBook, setSelectBook ] = React.useState(null);
 	//* Sayfa sayısını tutuyor
@@ -14,12 +21,29 @@ NewReportScreen = (props) => {
 
 	//* İptal butonu fonksiyonu
 	const handleCancel = () => {
-		props.navigation.goBack();
+		navigation.goBack();
 	};
 
 	//*Kaydet butonu fonksiyonu
 	const handleSave = () => {
 		//TODO Rapor kaydetme API'si yazılacak.
+		let data = {
+			bookId: 0,
+			pageCount:parseInt(pageCount),
+			date: selectedDate.toISOString(), 
+			note: "",
+			loggedInUserId: props.data.userInfo.id
+		  }
+
+		  try {
+			
+			dispatch(addUserReport(JSON.stringify(data))).then(({action,value}) => {
+			alert(value.message)
+			})			
+		
+		} catch (e) {
+			console.log(e);
+		}
 	};
 
 	//* Takvim iconu
@@ -43,7 +67,13 @@ NewReportScreen = (props) => {
 		<Layout style={styles.container}>
 			<Card header={Header} footer={Footer} style={{ width: wp('100%') }}>
 				<Layout>
-					<Datepicker placeholder="Rapor Tarihi" date={date} onSelect={setDate} icon={CalendarIcon} />
+					<Datepicker
+					min={minDate}
+					max={maxDate}
+					placeholder="Rapor Tarihi" 
+					date={selectedDate}
+					onSelect={setSelectedDate} 
+					icon={CalendarIcon} />
 					<Select
 						style={styles.select}
 						data={dataBook}
@@ -55,18 +85,21 @@ NewReportScreen = (props) => {
 						placeholder="Okunan Sayfa Sayısı"
 						onChangeText={setPageCount}
 						keyboardType="numeric"
-						maxLength={4}
+						maxLength={3}
 					/>
 				</Layout>
 			</Card>
 			<Layout style={{ padding: hp('2%') }}>
-				<Text>NOT: Okunan sayfa sayını en son okuduğunuz sayfa sayısı kadar giriniz.</Text>
+				<Text>NOT: Okunan sayfa sayını en son okuduğunuz sayfa sayısı kadar giriniz. {selectedDate.toISOString()}  </Text>
 			</Layout>
 		</Layout>
 	);
 };
 
-export default NewReportScreen;
+mapStateToProps = (state) => { return state }
+
+export default connect(mapStateToProps)(NewReportScreen);
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,

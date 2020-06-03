@@ -2,121 +2,121 @@
 export const dummyData = [
 	{
 		id: 1,
-		date: '03.05.2020',
-		readingBook: 'Şualar',
-		pageCount: 22,
+		date: '03.04.2020',
+		readingBook: 'Lemalar',
+		pageCount: 19,
 		haveReport: true
 	},
 	{
 		id: 2,
-		date: '03.05.2020',
+		date: '10.04.2020',
 		readingBook: 'Şualar',
-		pageCount: 22,
+		pageCount: 12,
 		haveReport: false
 	},
 	{
 		id: 3,
-		date: '03.05.2020',
+		date: '11.04.2020',
 		readingBook: 'Şualar',
-		pageCount: 22,
+		pageCount: 42,
 		haveReport: false
 	},
 	{
 		id: 4,
-		date: '03.05.2020',
+		date: '14.04.2020',
 		readingBook: 'Şualar',
-		pageCount: 22,
+		pageCount: 2,
 		haveReport: true
 	},
 	{
 		id: 5,
-		date: '03.05.2020',
+		date: '23.04.2020',
 		readingBook: 'Şualar',
-		pageCount: 22,
+		pageCount: 10,
 		haveReport: true
 	},
 	{
 		id: 6,
-		date: '03.05.2020',
+		date: '01.05.2020',
 		readingBook: 'Şualar',
-		pageCount: 22,
+		pageCount: 15,
 		haveReport: false
 	},
 	{
 		id: 7,
-		date: '03.05.2020',
+		date: '02.05.2020',
 		readingBook: 'Şualar',
-		pageCount: 22,
+		pageCount: 14,
 		haveReport: true
 	},
 	{
 		id: 8,
 		date: '03.05.2020',
 		readingBook: 'Şualar',
-		pageCount: 22,
+		pageCount: 20,
 		haveReport: true
 	},
 	{
 		id: 9,
-		date: '03.05.2020',
+		date: '06.05.2020',
 		readingBook: 'Şualar',
-		pageCount: 22,
+		pageCount: 29,
 		haveReport: false
 	},
 	{
 		id: 10,
-		date: '03.05.2020',
+		date: '12.05.2020',
 		readingBook: 'Şualar',
-		pageCount: 22,
+		pageCount: 25,
 		haveReport: true
 	},
 	{
 		id: 11,
-		date: '03.05.2020',
-		readingBook: 'Şualar',
-		pageCount: 22,
+		date: '15.05.2020',
+		readingBook: 'Sözler',
+		pageCount: 40,
 		haveReport: false
 	},
 	{
 		id: 12,
-		date: '03.05.2020',
-		readingBook: 'Şualar',
-		pageCount: 22,
+		date: '17.05.2020',
+		readingBook: 'Sözler',
+		pageCount: 56,
 		haveReport: false
 	},
 	{
 		id: 13,
-		date: '03.05.2020',
-		readingBook: 'Şualar',
-		pageCount: 22,
+		date: '29.05.2020',
+		readingBook: 'Sözler',
+		pageCount: 66,
 		haveReport: false
 	},
 	{
 		id: 14,
-		date: '03.05.2020',
-		readingBook: 'Şualar',
-		pageCount: 22,
+		date: '30.05.2020',
+		readingBook: 'Sözler',
+		pageCount: 55,
 		haveReport: false
 	},
 	{
 		id: 15,
-		date: '03.05.2020',
+		date: '31.05.2020',
 		readingBook: 'Şualar',
-		pageCount: 22,
+		pageCount: 23,
 		haveReport: false
 	},
 	{
 		id: 16,
-		date: '03.05.2020',
-		readingBook: 'Şualar',
-		pageCount: 22,
+		date: '01.06.2020',
+		readingBook: 'Sözler',
+		pageCount: 32,
 		haveReport: false
 	},
 	{
 		id: 17,
 		date: '03.05.2020',
-		readingBook: 'Şualar',
-		pageCount: 22,
+		readingBook: 'Sözler',
+		pageCount: 11,
 		haveReport: false
 	}
 ];
@@ -126,11 +126,11 @@ export const data = [ { text: '2019' }, { text: '2020' } ];
 
 //* Rapor giriş ekranındaki Okunan kitaplar listesi
 export const dataBook = [
+	{ text: 'Sözler' },
 	{ text: 'Şualar' },
-	{ text: 'Şualar' },
-	{ text: 'Şualar' },
-	{ text: 'Şualar' },
-	{ text: 'Şualar' },
-	{ text: 'Şualar' },
-	{ text: 'Şualar' }
+	{ text: 'Lemalar' },
+	{ text: 'Mektubat' },
+	{ text: 'Kastamonu Lah.' },
+	{ text: 'Barla Lah.' },
+	{ text: 'Emirdağ Lah.' }
 ];

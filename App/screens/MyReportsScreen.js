@@ -21,7 +21,7 @@ export const padding = 0;
 
 MyReportsScreen = (props) => {
 	//* Görüntülenme yılını tutuyor.
-	const [ selectYear, setSelectYear ] = React.useState(null);
+	const [ selectYear, setSelectYear ] = React.useState(new Date().getFullYear());
 
 	//* Swiper-Detay onPress Fonksiyonu
 	const handleInfo = (item) => {

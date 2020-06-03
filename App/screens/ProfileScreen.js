@@ -1,20 +1,13 @@
 import React from 'react';
-import { View, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
+import {  StyleSheet, Image, Alert } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontsAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { Text, Layout, Input, Select, Button } from '@ui-kitten/components';
+import { Text, Layout } from '@ui-kitten/components';
 import { KeyboardAvoidingView } from '../components/KeyboardAvoidingView';
-
-ProfileScreen = () => {
-	const [ selectCountry, setSelectCountry ] = React.useState();
-	const [ selectCity, setSelectCity ] = React.useState();
-	const [ selectGender, setSelectGender ] = React.useState();
-	const ulkeler = [ { text: 'Türkiye' }, { text: 'Kanada' }, { text: 'Hollanda' } ];
-
-	const sehirler = [ { text: 'İstanbul' }, { text: 'Sakarya' }, { text: 'Trabzon' } ];
-	const cinsiyet = [ { text: 'Erkek' }, { text: 'Kadın' } ];
+import {connect} from 'react-redux'
+ProfileScreen = (props) => {
 	return (
 		<KeyboardAvoidingView>
 			<Layout style={styles.container}>
@@ -45,8 +38,8 @@ ProfileScreen = () => {
 						/>
 					</Layout>
 					<Layout style={{ marginTop: hp('1%'), backgroundColor: 'transparent', alignItems: 'center' }}>
-						<Text style={{ fontSize: hp('2%'), fontWeight: 'bold' }}>Hakan ANGIN</Text>
-						<Text style={{ fontSize: hp('2%'), fontWeight: 'bold' }}>4. Bölüm</Text>
+						<Text style={{ fontSize: hp('2%'), fontWeight: 'bold' }}>{props.data.userInfo.firstName} {props.data.userInfo.lastName}</Text>
+						<Text style={{ fontSize: hp('2%'), fontWeight: 'bold' }}>{props.data.userInfo.level || "Henüz Bölüm İlerlemesi Yok"}</Text>
 					</Layout>
 				</Layout>
 				<Layout
@@ -75,7 +68,7 @@ ProfileScreen = () => {
 						<FontsAwesome5 name="award" style={{ fontSize: hp('4%'), color: '#75b79e' }} />
 						<Text>Toplam Puan</Text>
 						<Text style={{ fontSize: hp('3%'), lineHeight: hp('3%'), padding: hp('1%'), color: '#633a82' }}>
-							889
+							{props.data.currentScore}
 						</Text>
 					</Layout>
 					<Layout
@@ -115,7 +108,11 @@ ProfileScreen = () => {
 	);
 };
 
-export default ProfileScreen;
+const mapStateToProps = state => {
+	return state
+}
+
+export default connect(mapStateToProps)(ProfileScreen);
 const styles = StyleSheet.create({
 	container: {
 		justifyContent: 'center',

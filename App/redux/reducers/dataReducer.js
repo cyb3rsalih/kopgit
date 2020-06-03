@@ -5,7 +5,12 @@ import {
 	LOGIN_FULFILLED,
 	LOGIN_PENDING,
 	LOGIN_REJECTED,
-	READY
+	READY,
+	ADD_REPORT,
+	ADD_REPORT_FULFILLED,
+	ADD_REPORT_PENDING,
+	ADD_REPORT_REJECTED,
+	SET_SCORE
 } from '../actions/dataAction';
 
 const initialState = {
@@ -15,7 +20,10 @@ const initialState = {
 	userToken: null,
 	fuserToken:null,
 	userInfo: null,
-	gradientColorStyles: [ '#000000', '#8877ff' ]
+	gradientColorStyles:  ['#000','#f0f'],
+	currentScore:0,
+	isSuccess:false,
+	message:''
 };
 
 export default (state = initialState, action) => {
@@ -35,7 +43,6 @@ export default (state = initialState, action) => {
 			return {
 				...state
 			};
-
 		case LOGIN_FULFILLED:
 			const { user,token,isSuccess } = action.payload;
 			return {
@@ -45,7 +52,6 @@ export default (state = initialState, action) => {
 				isFetching:false,
 				isSuccess
 			};
-
 		case LOGIN_PENDING:
 			console.log('pending');
 			return {
@@ -60,6 +66,35 @@ export default (state = initialState, action) => {
 				isSuccess: false,
 				isFetching:false
 			};
+		case ADD_REPORT:
+			return {
+				...state
+			}
+		case ADD_REPORT_PENDING:
+			return {
+				...state,
+				isFetching:true,
+			}
+		case ADD_REPORT_FULFILLED:
+			const { currentScore,message } = action.payload;
+			return {
+				...state,
+				isFetching:false,
+				currentScore,
+				isSuccess: action.payload.isSuccess,
+				message
+			}
+		case ADD_REPORT_REJECTED:
+			return {
+				...state,
+				isSuccess:false,
+				isFetching:false
+			}
+		case SET_SCORE:
+			return {
+				...state,
+				currentScore:action.payload
+			}
 		case READY:
 			return{
 				...state,
