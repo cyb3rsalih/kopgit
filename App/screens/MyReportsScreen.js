@@ -5,41 +5,76 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { dummyData, data } from '../assets/dummyData';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {connect} from 'react-redux'
+import {getUserReadingReports} from '../redux/actions/dataAction'
 
 //! Sayfadaki datalar geçici olarak Asset klasörü içerisinde tutuldu. Swiper ayrı bir component haline getirilip import edilecek.
 
 //TODO Stil değişkenleri için bir dosya oluştur.
-export const colorBackground = '#ffffff';
-export const colorText = '#000000';
-export const colorHighlight = '#e5e5e5';
-export const colorDanger = '#e91e63';
-export const colorInfo = '#2196f3';
-export const backButtonWidth = 75;
-export const openWidth = backButtonWidth;
-export const fontSize = 18;
-export const padding = 0;
+const colorBackground = '#ffffff';
+const colorText = '#000000';
+const colorHighlight = '#e5e5e5';
+const colorDanger = '#e91e63';
+const colorInfo = '#2196f3';
+const backButtonWidth = 75;
+const openWidth = backButtonWidth;
+const fontSize = 18;
+const padding = 0;
 
 MyReportsScreen = (props) => {
+	const {dispatch,navigation} = props
+
+	
+
+
 	//* Görüntülenme yılını tutuyor.
 	const [ selectYear, setSelectYear ] = React.useState(new Date().getFullYear());
+	const [ realData, setRealData ] = React.useState(dummyData);
+
+	const sendRequest = () => {
+		let data = {'year': 2020}
+
+		dispatch(getUserReadingReports(JSON.stringify(data))).then(({action,value}) => {
+			if(value.isSuccess){
+				setRealData(value.userReadingReports)
+			}
+		})	
+
+	}
+
+	React.useEffect(() => {
+		// Control taken once -> If not:
+		sendRequest()
+	},[])
 
 	//* Swiper-Detay onPress Fonksiyonu
 	const handleInfo = (item) => {
 		// * Detay sayfası rapor giriş ekranı ile aynı olacakmış!!
-		props.navigation.navigate('Yeni Rapor Girişi');
+		// NAVİGASYON YAPARKEN GEREKLİ PARAMETRELER GÖNDERİLİRSE PROBLEM KALMAZ -- salih
+		navigation.navigate('Yeni Rapor Girişi',);
 	};
 
 	//* Swiper-Sil işlemi onPress Fonksiyonu
 	const handleDelete = (item) => {
 		//TODO Swiper "SİL" işlemi için fonksiyon yazılacak.
+		alert("Silindi...")
 	};
 
 	//* Swiper için Render olacak Item
 	const Item = (item) => {
+		/**
+		 * bookId
+		 * bookName
+		 * note
+		 * pageCount
+		 * readingReportId
+		 * reportDate
+		 * userId
+		 */
 		return (
 			<Layout style={styles.listContainer}>
-				<Text style={styles.listFonts}>{item.date}</Text>
-				<Text style={styles.listFonts}>{item.readingBook}</Text>
+				<Text style={styles.listFonts}>{new Date(item.reportDate).toLocaleDateString()}</Text>
+				<Text style={[styles.listFonts]}>{item.bookName}</Text>
 				<Text style={styles.listFonts}>{item.pageCount}</Text>
 				<AntDesign name="swap" style={styles.swapText} />
 			</Layout>
@@ -49,7 +84,7 @@ MyReportsScreen = (props) => {
 	return (
 		<Layout style={styles.container}>
 			<Layout style={styles.headerContainer}>
-				<Button onPress={() => props.navigation.navigate('Yeni Rapor Girişi')} status="success">
+				<Button onPress={() => navigation.navigate('Yeni Rapor Girişi')} status="success">
 					Rapor Girişi Yap
 				</Button>
 				<Layout style={styles.headerContainerSub}>
@@ -65,11 +100,11 @@ MyReportsScreen = (props) => {
 			</Layout>
 			<SafeAreaView>
 				<SwipeListView
-					data={dummyData}
+					data={realData}
 					renderItem={({ item }) => Item(item)}
-					keyExtractor={(item) => item.id}
+					keyExtractor={(item) => item.readingReportId.toString()}
 					renderHiddenItem={({ item }) => (
-						<View style={styles.rowBack}>
+						<View key={item.id} style={styles.rowBack}>
 							<TouchableOpacity
 								style={[ styles.backLeftBtn, styles.deleteBtn ]}
 								onPress={() => handleDelete(item)}
@@ -95,7 +130,13 @@ MyReportsScreen = (props) => {
 	);
 };
 
-export default MyReportsScreen;
+mapStateToProps = state => {
+	return state
+}
+
+export default connect(mapStateToProps)(MyReportsScreen)
+
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1

@@ -13,6 +13,10 @@ export const ADD_REPORT_FULFILLED = 'ADD_REPORT_FULFILLED'
 export const ADD_REPORT_REJECTED = 'ADD_REPORT_REJECTED'
 export const SET_SCORE = 'SET_SCORE'
 export const READY = 'READY'
+export const GET_REPORTS = "GET_REPORTS"
+export const GET_REPORTS_PENDING = "GET_REPORTS_PENDING"
+export const GET_REPORTS_FULFILLED = "GET_REPORTS_FULFILLED"
+export const GET_REPORTS_REJECTED = "GET_REPORTS_REJECTED"
 
 export function loginUser(userData) {
 	return {
@@ -30,7 +34,7 @@ export function addUserReport(data){
 
 export function getUserReadingReports(data){
 	return {
-		type: ADD_REPORT,
+		type: GET_REPORTS,
 		payload: API.post('/ReadingLog/GetUserReadingReports', data).then((res) => res.data)
 	};
 }

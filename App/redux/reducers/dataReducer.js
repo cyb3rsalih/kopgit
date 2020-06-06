@@ -10,7 +10,12 @@ import {
 	ADD_REPORT_FULFILLED,
 	ADD_REPORT_PENDING,
 	ADD_REPORT_REJECTED,
-	SET_SCORE
+	SET_SCORE,
+	GET_REPORTS,
+	GET_REPORTS_FULFILLED,
+	GET_REPORTS_PENDING,
+	GET_REPORTS_REJECTED
+	
 } from '../actions/dataAction';
 
 const initialState = {
@@ -23,7 +28,8 @@ const initialState = {
 	gradientColorStyles:  ['#000','#f0f'],
 	currentScore:0,
 	isSuccess:false,
-	message:''
+	message:'',
+	userReadingReports:[]
 };
 
 export default (state = initialState, action) => {
@@ -89,6 +95,30 @@ export default (state = initialState, action) => {
 				...state,
 				isSuccess:false,
 				isFetching:false
+			}
+		case GET_REPORTS:
+			return {
+				...state
+			}
+		case GET_REPORTS_PENDING:
+			return {
+				...state,
+				isFetching:true
+			}
+		
+		case GET_REPORTS_FULFILLED:
+			return {
+				...state,
+				isFetching:false,
+				userReadingReports:action.payload.userReadingReports,
+				isSuccess:action.payload.isSuccess,
+				message:action.payload.message
+			}
+		case GET_REPORTS_REJECTED:
+			return {
+				...state,
+				isFetching:false,
+				message:'BİR ŞEYLER TERS GİTTİ...'
 			}
 		case SET_SCORE:
 			return {
