@@ -3,8 +3,9 @@ import { View,Text } from 'react-native';
 import Loading from '../components/Loading';
 import AsyncStorage from '@react-native-community/async-storage'
 import {connect} from 'react-redux'
+import API from '../config/API';
 
-import {isReady,setUserToken,setUserProfileInfo} from '../redux/actions/dataAction'
+import {isReady,setUserToken,setUserProfileInfo, setScore} from '../redux/actions/dataAction'
 
 const ScreenContainer = ({ children }) => <View style={{ flex: 1 }}>{children}</View>;
 
@@ -18,16 +19,31 @@ Splash = (props) => {
  			if(result == null){
 				console.log("No Info")
 			}else{
-				console.log("Info Found!")
+				console.log("User Info  Found!")
 			}
 		}).then((info) => {
 		
 			if(info != null){
-				console.log(`Token will send to redux: ${info}`)
+				console.log(`User Info will send to redux: ${info}`)
 				props.dispatch(setUserProfileInfo(JSON.parse(info)))
 			}
-		})
-		.then(() => {
+		}).then(() => {
+
+			AsyncStorage.getItem("SCORE",(err,result) => {
+				 if(result == null){
+					console.log("Puan bilgisi yok, problem olabilir.")
+				}else{
+					console.log("Puan bilgisi var yerine konulacak.")
+				}
+			}).then((score) => {
+	
+				if(score != null){
+					props.dispatch(setScore(parseInt(score)))
+				}
+				
+			})
+
+		}).then(() => {
 
 			AsyncStorage.getItem("TOKEN",(err,result) => {
 				// RESULT IS NOT THE VALUE SAVED!!!!!
@@ -42,12 +58,12 @@ Splash = (props) => {
 	
 				if(token != null){
 					console.log(`Token will send to redux: ${token}`)
+					API.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 					props.dispatch(setUserToken(token))
 				}
 				
 			})
 		})
-
 
 
 		

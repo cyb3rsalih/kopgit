@@ -14,7 +14,11 @@ import {
 	GET_REPORTS,
 	GET_REPORTS_FULFILLED,
 	GET_REPORTS_PENDING,
-	GET_REPORTS_REJECTED
+	GET_REPORTS_REJECTED,
+	DELETE_REPORT,
+	DELETE_REPORT_FULFILLED,
+	DELETE_REPORT_PENDING,
+	DELETE_REPORT_REJECTED
 	
 } from '../actions/dataAction';
 
@@ -119,6 +123,25 @@ export default (state = initialState, action) => {
 				...state,
 				isFetching:false,
 				message:'BİR ŞEYLER TERS GİTTİ...'
+			}
+		case DELETE_REPORT:
+			return {
+				...state
+			}
+		case DELETE_REPORT_FULFILLED:
+			return {
+				...state,
+				isFetching:false
+			}
+		case DELETE_REPORT_PENDING:
+			return {
+				...state,
+				isFetching:true
+			}
+		case DELETE_REPORT_REJECTED:
+			return {
+				...state,
+				isFetching:false
 			}
 		case SET_SCORE:
 			return {

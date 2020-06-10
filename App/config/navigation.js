@@ -17,6 +17,7 @@ import FAQScreen from '../screens/FAQScreen';
 
 import MyReportsScreen from '../screens/MyReportsScreen';
 import NewReportScreen from '../screens/NewReportScreen';
+import ReportDetailScreen from '../screens/ReportDetailScreen';
 
 import MyTasksScreen from '../screens/MyTasksScreen';
 import TasksScreen from '../screens/TasksScreen';
@@ -55,6 +56,7 @@ const ReportNavigator = () => (
 	<Report.Navigator screenOptions={stackStyles({ title: 'Raporlarım' })}>
 		<Report.Screen name={'Geçmiş Raporlar'} component={MyReportsScreen} />
 		<Report.Screen name={'Yeni Rapor Girişi'} component={NewReportScreen} />
+		<Report.Screen name={'Rapor Detay'} component={ReportDetailScreen} />
 	</Report.Navigator>
 );
 

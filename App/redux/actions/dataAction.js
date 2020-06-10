@@ -17,6 +17,18 @@ export const GET_REPORTS = "GET_REPORTS"
 export const GET_REPORTS_PENDING = "GET_REPORTS_PENDING"
 export const GET_REPORTS_FULFILLED = "GET_REPORTS_FULFILLED"
 export const GET_REPORTS_REJECTED = "GET_REPORTS_REJECTED"
+export const DELETE_REPORT = "DELETE_REPORT"
+export const DELETE_REPORT_PENDING = "DELETE_REPORT_PENDING"
+export const DELETE_REPORT_FULFILLED = "DELETE_REPORT_FULFILLED"
+export const DELETE_REPORT_REJECTED = "DELETE_REPORT_REJECTED"
+
+
+export function deleteReport(readingReportId){
+	return {
+		type: DELETE_REPORT,
+		payload: API.post('/ReadingLog/DeleteUserReport', readingReportId).then((res) => res.data)
+	};
+}
 
 export function loginUser(userData) {
 	return {

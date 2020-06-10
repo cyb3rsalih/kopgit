@@ -6,7 +6,7 @@ import { SwipeListView } from 'react-native-swipe-list-view';
 import { dummyData, data } from '../assets/dummyData';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {connect} from 'react-redux'
-import {getUserReadingReports} from '../redux/actions/dataAction'
+import {getUserReadingReports,deleteReport, setScore} from '../redux/actions/dataAction'
 
 //! Sayfadaki datalar geçici olarak Asset klasörü içerisinde tutuldu. Swiper ayrı bir component haline getirilip import edilecek.
 
@@ -22,21 +22,21 @@ const fontSize = 18;
 const padding = 0;
 
 MyReportsScreen = (props) => {
-	const {dispatch,navigation} = props
-
-	
-
+	const {dispatch,navigation,route} = props
 
 	//* Görüntülenme yılını tutuyor.
-	const [ selectYear, setSelectYear ] = React.useState(new Date().getFullYear());
+	const [ selectYear, setSelectYear ] = React.useState(new Date().getFullYear().toString());
 	const [ realData, setRealData ] = React.useState(dummyData);
 
-	const sendRequest = () => {
-		let data = {'year': 2020}
+	const sendRequest = (year = new Date().getFullYear().toString()) => {
+		let data = {'year': parseInt(year)}
 
 		dispatch(getUserReadingReports(JSON.stringify(data))).then(({action,value}) => {
 			if(value.isSuccess){
-				setRealData(value.userReadingReports)
+				if(props.data.userReadingReports !== value.userReadingReports)
+					setRealData(value.userReadingReports)
+				else
+					console.log("ZATEN AYNI, ÇEKMEYE GEREK YOKMUŞ....")
 			}
 		})	
 
@@ -44,21 +44,37 @@ MyReportsScreen = (props) => {
 
 	React.useEffect(() => {
 		// Control taken once -> If not:
-		sendRequest()
+		yearUpdate()
 	},[])
 
 	//* Swiper-Detay onPress Fonksiyonu
 	const handleInfo = (item) => {
-		// * Detay sayfası rapor giriş ekranı ile aynı olacakmış!!
-		// NAVİGASYON YAPARKEN GEREKLİ PARAMETRELER GÖNDERİLİRSE PROBLEM KALMAZ -- salih
-		navigation.navigate('Yeni Rapor Girişi',);
+		// * Detay sayfası rapor giriş ekranı ile aynı olacakmış!! - neredeyse
+		navigation.navigate('Rapor Detay',item);
 	};
 
 	//* Swiper-Sil işlemi onPress Fonksiyonu
 	const handleDelete = (item) => {
 		//TODO Swiper "SİL" işlemi için fonksiyon yazılacak.
-		alert("Silindi...")
+		let silinecek = {
+			readingReportId: item.readingReportId
+		}
+
+		let theYear = new Date(item.reportDate)
+		theYear = theYear.getFullYear().toString()
+
+		dispatch(deleteReport(silinecek)).then(({action,value}) => {
+			alert(value.message)
+			yearUpdate(theYear) // Hangi Yıla ait rapor silindiyse o yılın listesi güncellenecek.
+			console.log(theYear+" "+typeof theYear)
+		})
 	};
+
+	const yearUpdate= (option = {text: new Date().getFullYear().toString()}) =>{
+		// Quick fix - Problem with select component, not work correctly
+		setSelectYear(option.text)
+		sendRequest(option.text)
+	}
 
 	//* Swiper için Render olacak Item
 	const Item = (item) => {
@@ -88,13 +104,13 @@ MyReportsScreen = (props) => {
 					Rapor Girişi Yap
 				</Button>
 				<Layout style={styles.headerContainerSub}>
-					<Text>Görüntüleme Yılı</Text>
+				<Text>Görüntüleme Yılı: {selectYear} </Text>
 					<Select
 						style={styles.select}
 						data={data}
-						placeholder="Yıllar"
-						selectedOption={selectYear}
-						onSelect={setSelectYear}
+						placeholder={selectYear || "Rapor Yılı Seç"}
+						selectedOption={selectYear} // UPDATE OLMUYOR
+						onSelect={(option) => yearUpdate(option)}
 					/>
 				</Layout>
 			</Layout>

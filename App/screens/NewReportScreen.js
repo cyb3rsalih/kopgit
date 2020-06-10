@@ -5,7 +5,8 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { dataBook } from '../assets/dummyData';
 import {connect} from 'react-redux'
 
-import { addUserReport} from '../redux/actions/dataAction';
+import { addUserReport,getUserReadingReports,setRealData, setScore} from '../redux/actions/dataAction';
+import AsyncStorage from '@react-native-community/async-storage';
 
 NewReportScreen = (props) => {
 	const { dispatch,navigation } = props
@@ -24,11 +25,12 @@ NewReportScreen = (props) => {
 		navigation.goBack();
 	};
 
+
+
 	//*Kaydet butonu fonksiyonu
 	const handleSave = () => {
-		//TODO Rapor kaydetme API'si yazılacak.
 		let data = {
-			bookId: 0,
+			bookId: 5,
 			pageCount:parseInt(pageCount),
 			date: selectedDate.toISOString(), 
 			note: "",
@@ -39,6 +41,11 @@ NewReportScreen = (props) => {
 			
 			dispatch(addUserReport(JSON.stringify(data))).then(({action,value}) => {
 			alert(value.message)
+			if(value.isSuccess){
+				dispatch(setScore(value.currentScore))
+				AsyncStorage.setItem("SCORE",value.currentScore.toString(),(error) => alert("Puan storage üzerine eklendi.") )	
+			}
+			
 			})			
 		
 		} catch (e) {
@@ -56,7 +63,7 @@ NewReportScreen = (props) => {
 	const Footer = () => (
 		<View style={styles.footerContainer}>
 			<Button style={styles.footerControl} size="small" status="basic" onPress={() => handleCancel()}>
-				İPTAL
+				GERİ GİT
 			</Button>
 			<Button style={styles.footerControl} size="small" status="primary" onPress={() => handleSave()}>
 				KAYDET
@@ -90,7 +97,7 @@ NewReportScreen = (props) => {
 				</Layout>
 			</Card>
 			<Layout style={{ padding: hp('2%') }}>
-				<Text>NOT: Okunan sayfa sayını en son okuduğunuz sayfa sayısı kadar giriniz. {selectedDate.toISOString()}  </Text>
+				<Text>NOT: Okunan sayfa sayını en son okuduğunuz sayfa sayısı kadar giriniz.</Text>
 			</Layout>
 		</Layout>
 	);

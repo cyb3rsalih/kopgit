@@ -1,21 +1,21 @@
 import React from 'react';
-import { StyleSheet,TouchableOpacity } from 'react-native';
-import { Text, Layout } from '@ui-kitten/components';
+import { StyleSheet } from 'react-native';
+import { Layout,Button } from '@ui-kitten/components';
 import { connect } from 'react-redux';
-
 DashboardScreen = (props) => {
+
 	React.useEffect(() => {
-		//navigation.setOptions({ title: 'Updated!' })
+		//navigation.setOptions({ title: 'Updated!' })		
 	}, []);
 
 	return (
-		<React.Fragment>
 			<Layout style={styles.container}>
-				<TouchableOpacity onPress={() => props.navigation.navigate('Profilim')} >
-				<Text>DEBUG</Text>	
-				</TouchableOpacity>
+			
+				<Button size="small" status="danger" onPress={() => console.log(props.data)}>
+					Redux Debug
+				</Button>
+				
 			</Layout>
-		</React.Fragment>
 	);
 };
 
@@ -30,5 +30,5 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center'
-	}
+	},
 });
