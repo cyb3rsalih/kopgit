@@ -106,7 +106,7 @@ const BottomTabBar = ({ navigation, state }) => {
 };
 
 const TabNavigator = () => (
-	<Tabs.Navigator tabBar={(props) => <BottomTabBar {...props} />}>
+	<Tabs.Navigator lazy={true}  tabBar={(props) => <BottomTabBar {...props} />}>
 		<Tabs.Screen name={'Anasayfa'} component={DashboardNavigator} />
 		<Tabs.Screen name={'Profilim'} component={ProfileNavigator} />
 		<Tabs.Screen name={'Görevlerim'} component={TasksNavigator} />

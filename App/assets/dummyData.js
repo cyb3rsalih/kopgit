@@ -105,15 +105,23 @@ export const dummyData = [
 ];
 
 //* Rapor ekranı görüntülenme yılları
-export const data = [ { text: '2019' }, { text: '2020' } ];
+export const data = [ 
+	{id:1 ,text: '2019' },
+	{id:2 ,text: '2020' }
+ ];
 
 //* Rapor giriş ekranındaki Okunan kitaplar listesi
 export const dataBook = [
-	{ text: 'Sözler' },
-	{ text: 'Şualar' },
-	{ text: 'Lemalar' },
-	{ text: 'Mektubat' },
-	{ text: 'Kastamonu Lah.' },
-	{ text: 'Barla Lah.' },
-	{ text: 'Emirdağ Lah.' }
+	{ id:1,text: 'Sözler' },
+	{ id:2,text: 'İman ve Küfür Muvazeneleri' },
+	{ id:3,text: 'Lemalar' },
+	{ id:4,text: 'Şualar' },
+	{ id:5,text: 'Asa\'yı Musa' },
+	{ id:6,text: 'Tarihçe-i Hayat' },
+	{ id:7,text: 'Mektubat' },
+	{ id:8,text: 'Barla Lah.' },
+	{ id:9,text: 'Kastamonu Lah.' },
+	{ id:10,text: 'Emirdağ Lah.' },
+	{ id:11,text: 'Sikke-i Tasdik-i Gaybi' },
+	{ id:12,text: 'İşarat-ul İ\'caz'},
 ];

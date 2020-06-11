@@ -4,7 +4,7 @@ import { Layout, Card, CardHeader, Button, Datepicker, Icon, Input, Select, Text
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { dataBook } from '../assets/dummyData';
 import {connect} from 'react-redux'
-
+import { KeyboardAvoidingView } from '../components/KeyboardAvoidingView';
 import { addUserReport,getUserReadingReports,setRealData, setScore} from '../redux/actions/dataAction';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -16,7 +16,7 @@ NewReportScreen = (props) => {
 	//* Rapor tarihini tutuyor
 	const [ selectedDate, setSelectedDate ] = React.useState(new Date());
 	//* Okunan kitabı tutuyor
-	const [ selectBook, setSelectBook ] = React.useState(null);
+	const [ selectBook, setSelectBook ] = React.useState({text:""});
 	//* Sayfa sayısını tutuyor
 	const [ pageCount, setPageCount ] = React.useState(null);
 
@@ -30,13 +30,13 @@ NewReportScreen = (props) => {
 	//*Kaydet butonu fonksiyonu
 	const handleSave = () => {
 		let data = {
-			bookId: 5,
+			bookId: selectBook.id,
 			pageCount:parseInt(pageCount),
 			date: selectedDate.toISOString(), 
 			note: "",
 			loggedInUserId: props.data.userInfo.id
 		  }
-
+		  console.log(data)
 		  try {
 			
 			dispatch(addUserReport(JSON.stringify(data))).then(({action,value}) => {
@@ -71,6 +71,7 @@ NewReportScreen = (props) => {
 		</View>
 	);
 	return (
+		<KeyboardAvoidingView> 
 		<Layout style={styles.container}>
 			<Card header={Header} footer={Footer} style={{ width: wp('100%') }}>
 				<Layout>
@@ -84,9 +85,9 @@ NewReportScreen = (props) => {
 					<Select
 						style={styles.select}
 						data={dataBook}
-						placeholder="Okunan Kitap"
+						placeholder={"Okunan Kitap"}
 						selectedOption={selectBook}
-						onSelect={setSelectBook}
+						onSelect={(option) => setSelectBook(option)}
 					/>
 					<Input
 						placeholder="Okunan Sayfa Sayısı"
@@ -98,8 +99,12 @@ NewReportScreen = (props) => {
 			</Card>
 			<Layout style={{ padding: hp('2%') }}>
 				<Text>NOT: Okunan sayfa sayını en son okuduğunuz sayfa sayısı kadar giriniz.</Text>
+				<Button size="small" status="danger" onPress={() => console.log(selectBook)}>
+					Debug
+				</Button>
 			</Layout>
 		</Layout>
+		</KeyboardAvoidingView>
 	);
 };
 
