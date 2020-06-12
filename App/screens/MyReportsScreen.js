@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, SafeAreaView, View, Alert } from 'react-native';
+import { StyleSheet, TouchableOpacity, SafeAreaView, View, Alert,RefreshControl } from 'react-native';
 import { Modal, Layout, Button, Select, Text } from '@ui-kitten/components';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { SwipeListView } from 'react-native-swipe-list-view';
@@ -116,6 +116,12 @@ MyReportsScreen = (props) => {
 			</Layout>
 			<SafeAreaView>
 				<SwipeListView
+					refreshControl={
+						<RefreshControl
+						refreshing={props.data.isFetching}
+						onRefresh={yearUpdate}
+						/>
+					}
 					data={realData}
 					renderItem={({ item }) => Item(item)}
 					keyExtractor={(item) => item.readingReportId.toString()}
