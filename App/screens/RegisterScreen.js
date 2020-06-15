@@ -12,19 +12,42 @@ import {
 import { KeyboardAvoidingView } from '../components/KeyboardAvoidingView';
 import LG from 'react-native-linear-gradient';
 import { connect } from 'react-redux'
+import {createUser} from '../redux/actions/dataAction'
 
 Register = ({ navigation, data, dispatch }) => {
-    const [firstName, setFirstName] = React.useState();
-    const [lastName, setLastName] = React.useState();
-    const [email, setEmail] = React.useState();
-    const [password, setPassword] = React.useState();
-    const [dob, setDob] = React.useState();
-    const [termsAccepted, setTermsAccepted] = React.useState(false);
+    const [firstName, setFirstName] = React.useState("serkan");
+    const [lastName, setLastName] = React.useState("cam");
+    const [email, setEmail] = React.useState("serkancam@asd.com");
+    const [password, setPassword] = React.useState("123456");
+    //const [dob, setDob] = React.useState();
+    const [termsAccepted, setTermsAccepted] = React.useState(true);
 
     const styles = useStyleSheet(themedStyles);
 
     const onSignUpButtonPress = () => {
-        navigation.goBack();
+        let registerData = {
+            firstName,
+            lastName,
+            email,
+            password,
+        }
+        
+        console.log(registerData)
+
+        dispatch(createUser(registerData)).then(({action,value}) => {
+
+            if(value.isSuccess){
+                alert(value.message);
+                // Belki burdan login ekranına alırız elamanı ;)
+            }else{
+                alert("Bir takım bilgiler hatalı. Ne olduğunu bana sorma bilmiyorum. "+value.message)
+            }
+
+        } ).catch( (onrejected) => {
+            console.log("Onrejected: ",onrejected)
+        })
+
+        //navigation.goBack();
     };
 
     const onSignInButtonPress = () => {
@@ -58,13 +81,13 @@ Register = ({ navigation, data, dispatch }) => {
                         value={lastName}
                         onChangeText={setLastName}
                     />
-                    <Datepicker
+                    {/* <Datepicker
                         style={styles.formInput}
                         placeholder="18/10/1995"
                         label="Doğum Tarihi"
                         date={dob}
                         onSelect={setDob}
-                    />
+                    /> */}
                     <Input
                         style={styles.formInput}
                         placeholder="alidemir@gmail.com"

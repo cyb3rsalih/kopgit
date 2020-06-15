@@ -5,7 +5,7 @@ NewSupportRequestScreen = () => {
 
     return (
         <View style={styles.container} >
-            <Text>New Support Request Screen</Text>
+            <Text>FAQ Screen</Text>
         </View>
     )
 }

@@ -18,7 +18,19 @@ import {
 	DELETE_REPORT,
 	DELETE_REPORT_FULFILLED,
 	DELETE_REPORT_PENDING,
-	DELETE_REPORT_REJECTED
+	DELETE_REPORT_REJECTED,
+	LIST_FAQ,
+	LIST_FAQ_PENDING,
+	LIST_FAQ_FULFILLED,
+	LIST_FAQ_REJECTED,
+	GET_LEVELS,
+	GET_LEVELS_FULFILLED,
+	GET_LEVELS_PENDING,
+	GET_LEVELS_REJECTED,
+	CREATE_USER,
+	CREATE_USER_PENDING,
+	CREATE_USER_FULFILLED,
+	CREATE_USER_REJECTED
 	
 } from '../actions/dataAction';
 
@@ -33,7 +45,9 @@ const initialState = {
 	currentScore:0,
 	isSuccess:false,
 	message:'',
-	userReadingReports:[]
+	userReadingReports:[],
+	faqs:[],
+	levels:[],
 };
 
 export default (state = initialState, action) => {
@@ -139,6 +153,67 @@ export default (state = initialState, action) => {
 				isFetching:true
 			}
 		case DELETE_REPORT_REJECTED:
+			return {
+				...state,
+				isFetching:false
+			}
+		case LIST_FAQ:
+			return {
+				...state
+			}
+		case LIST_FAQ_FULFILLED:
+			return {
+				...state,
+				faqs:action.payload,
+				isFetching:false
+			}
+		case LIST_FAQ_PENDING:
+			return {
+				...state,
+				isFetching:true
+			}
+		case LIST_FAQ_REJECTED:
+			return {
+				...state,
+				isFetching:false
+			}
+		case GET_LEVELS:
+			return {
+				...state
+			}
+		case GET_LEVELS_FULFILLED:
+			return {
+				...state,
+				// BUG levels:action.payload.levels,
+				isSuccess:action.payload.isSuccess,
+				isFetching:false
+			}
+		case GET_LEVELS_PENDING:
+			return {
+				...state,
+				isFetching:true
+			}
+		case GET_LEVELS_REJECTED:
+			return {
+				...state,
+				isFetching:false
+			}
+		case CREATE_USER:
+			return {
+				...state
+			}
+		case CREATE_USER_FULFILLED:
+			return {
+				...state,
+				isSuccess:action.payload.isSuccess,
+				isFetching:false
+			}
+		case CREATE_USER_PENDING:
+			return {
+				...state,
+				isFetching:true
+			}
+		case CREATE_USER_REJECTED:
 			return {
 				...state,
 				isFetching:false

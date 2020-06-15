@@ -21,7 +21,44 @@ export const DELETE_REPORT = "DELETE_REPORT"
 export const DELETE_REPORT_PENDING = "DELETE_REPORT_PENDING"
 export const DELETE_REPORT_FULFILLED = "DELETE_REPORT_FULFILLED"
 export const DELETE_REPORT_REJECTED = "DELETE_REPORT_REJECTED"
+export const LIST_FAQ = "LIST_FAQ"
+export const LIST_FAQ_PENDING = "LIST_FAQ_PENDING"
+export const LIST_FAQ_FULFILLED = "LIST_FAQ_FULFILLED"
+export const LIST_FAQ_REJECTED = "LIST_FAQ_REJECTED"
+export const GET_LEVELS = "GET_LEVELS"
+export const GET_LEVELS_PENDING = "GET_LEVELS_PENDING"
+export const GET_LEVELS_FULFILLED = "GET_LEVELS_FULFILLED"
+export const GET_LEVELS_REJECTED = "GET_LEVELS_REJECTED"
+export const CREATE_USER = "CREATE_USER"
+export const CREATE_USER_PENDING = "CREATE_USER_PENDING"
+export const CREATE_USER_FULFILLED = "CREATE_USER_FULFILLED"
+export const CREATE_USER_REJECTED = "CREATE_USER_REJECTED"
 
+export function createUser(registerData){
+	return {
+		type: CREATE_USER,
+		payload: API.post('/Auth/CreateUser',registerData).then((res) => res.data).catch((onrejected) => {
+			console.log(onrejected)
+		})
+	};
+}
+
+// NOT WORK
+// export function getLevels(){
+// 	return {
+// 		type: GET_LEVELS,
+// 		payload: API.post('/Level/GetLevels').then((res) => res.data).catch((onrejected) => {
+// 			console.log(onrejected)
+// 		})
+// 	};
+// }
+
+export function listFaq(){
+	return {
+		type: LIST_FAQ,
+		payload: API.get('/Faqs/ListFaq').then((res) => res.data)
+	};
+}
 
 export function deleteReport(readingReportId){
 	return {

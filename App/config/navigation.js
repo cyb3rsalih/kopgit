@@ -14,6 +14,7 @@ import DashboardScreen from '../screens/DashboardScreen';
 import NewSupportRequestScreen from '../screens/NewSupportRequestScreen';
 import MyQuestionsScreen from '../screens/MyQuestionsScreen';
 import FAQScreen from '../screens/FAQScreen';
+import QuestionDetail from '../screens/QuestionDetail';
 
 import MyReportsScreen from '../screens/MyReportsScreen';
 import NewReportScreen from '../screens/NewReportScreen';
@@ -45,9 +46,11 @@ import { stackStyles } from '../config/functions';
 const Support = createStackNavigator();
 const SupportNavigator = () => (
 	<Support.Navigator screenOptions={stackStyles({ title: 'Destek' })}>
+		<Support.Screen name={'Sıkça Sorulan Sorular'} component={FAQScreen} />
+		<Support.Screen name={'Soru Detay'} component={QuestionDetail} />
 		<Support.Screen name={'Yeni Soru'} component={NewSupportRequestScreen} />
 		<Support.Screen name={'Sorularım'} component={MyQuestionsScreen} />
-		<Support.Screen name={'Sıkça Sorulan Sorular'} component={FAQScreen} />
+		<Support.Screen name={'SoruDetay'} component={FAQScreen} />
 	</Support.Navigator>
 );
 
