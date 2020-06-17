@@ -21,6 +21,7 @@ import NewReportScreen from '../screens/NewReportScreen';
 import ReportDetailScreen from '../screens/ReportDetailScreen';
 
 import MyTasksScreen from '../screens/MyTasksScreen';
+import TaskDetailScreen from '../screens/TaskDetailScreen';
 import TasksScreen from '../screens/TasksScreen';
 import RewardScreen from '../screens/RewardScreen';
 
@@ -67,6 +68,7 @@ const Tasks = createStackNavigator();
 const TasksNavigator = () => (
 	<Tasks.Navigator screenOptions={stackStyles({ title: 'Görevlerim' })}>
 		<Tasks.Screen name={'Görevlerim'} component={MyTasksScreen} />
+		<Tasks.Screen name={'Görev Detay'} component={TaskDetailScreen} />
 		<Tasks.Screen name={'Görev'} component={TasksScreen} />
 		<Tasks.Screen name={'Ödül'} component={RewardScreen} />
 	</Tasks.Navigator>

@@ -47,7 +47,8 @@ const initialState = {
 	message:'',
 	userReadingReports:[],
 	faqs:[],
-	levels:[],
+	userLevels:[],
+	isAllTasksCompleted:false
 };
 
 export default (state = initialState, action) => {
@@ -184,7 +185,7 @@ export default (state = initialState, action) => {
 		case GET_LEVELS_FULFILLED:
 			return {
 				...state,
-				// BUG levels:action.payload.levels,
+				userLevels:action.payload.userLevels,
 				isSuccess:action.payload.isSuccess,
 				isFetching:false
 			}

@@ -26,7 +26,7 @@ const stackStyles = ({ title }) => {
             <Icon {...iconProps} onPress={() => navigation.toggleDrawer()} name="menu-outline"></Icon>
         ),
         headerLeft: () => (
-            <Icon {...iconProps} onPress={() => navigation.goBack()} name="arrow-back-outline"></Icon>
+            <Icon {...iconProps} onPress={() => navigation.pop()} name="arrow-back-outline"></Icon>
 
         ),
     }

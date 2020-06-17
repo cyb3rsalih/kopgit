@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import {
     Button,
     CheckBox,
-    Datepicker,
     Input,
     StyleService,
     Text,

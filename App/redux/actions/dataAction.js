@@ -34,24 +34,16 @@ export const CREATE_USER_PENDING = "CREATE_USER_PENDING"
 export const CREATE_USER_FULFILLED = "CREATE_USER_FULFILLED"
 export const CREATE_USER_REJECTED = "CREATE_USER_REJECTED"
 
-export function createUser(registerData){
+
+
+export function getLevels(){
 	return {
-		type: CREATE_USER,
-		payload: API.post('/Auth/CreateUser',registerData).then((res) => res.data).catch((onrejected) => {
+		type: GET_LEVELS,
+		payload: API.get('/Level/GetUserLevels').then((res) => res.data).catch((onrejected) => {
 			console.log(onrejected)
 		})
 	};
 }
-
-// NOT WORK
-// export function getLevels(){
-// 	return {
-// 		type: GET_LEVELS,
-// 		payload: API.post('/Level/GetLevels').then((res) => res.data).catch((onrejected) => {
-// 			console.log(onrejected)
-// 		})
-// 	};
-// }
 
 export function listFaq(){
 	return {
@@ -64,6 +56,15 @@ export function deleteReport(readingReportId){
 	return {
 		type: DELETE_REPORT,
 		payload: API.post('/ReadingLog/DeleteUserReport', readingReportId).then((res) => res.data)
+	};
+}
+
+export function createUser(registerData){
+	return {
+		type: CREATE_USER,
+		payload: API.post('/Auth/CreateUser',registerData).then((res) => res.data).catch((onrejected) => {
+			console.log(onrejected)
+		})
 	};
 }
 

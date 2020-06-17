@@ -1,7 +1,7 @@
 import React from 'react'
-import { View, StyleSheet, Text, ScrollView } from 'react-native'
-import { Layout,Button } from '@ui-kitten/components';
-//import {getLevels} from '../redux/actions/dataAction'
+import { View, StyleSheet, Text, ScrollView,FlatList } from 'react-native'
+import { Layout,Button,Card,Icon } from '@ui-kitten/components';
+import {getLevels} from '../redux/actions/dataAction'
 import { connect } from 'react-redux';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
@@ -10,38 +10,44 @@ MyTasksScreen = ({navigation,data,dispatch}) => {
     const [q, setQ] = React.useState({id:"asd",title:"dddd",description:"xxx"})
 
     const getFaqs = () => {
-        // dispatch(getLevels()).then(({action,value}) => {
-		// 	console.log(value)
-        // 	})			
-        alert("API HAZIR DEĞİL DAHA")
+        dispatch(getLevels())
     }
-
     React.useEffect(() => { getFaqs() },[])
 
-    const redirectToDetail = (question) => { 
-        console.log("Geldi!!!!",question)
-        //navigation && navigation.push('Soru Detay',question)
+    const redirectToDetail = (item) => { 
+        console.log("Geldi!!!!",item)
+        navigation && navigation.navigate('Görev Detay',item)
     }
 
     return (
+            <View style={{flex:1}}>
         <ScrollView contentContainerStyle={styles.container} >
-            <Text>Frequently Asked Questions</Text>
-            
-            {
-                data.levels && data.levels.map( (level,index) => {
-                    return(
-                        <View style={{marginVertical:10}} key={index}>
-                            <Button size={'small'} status="danger" onPress={() => {
-                                redirectToDetail(level)
-                                } }>
-                                {level.levelName}
-                            </Button>
-                        </View>
-                    )
-                } )
-            }
-			
+            <View style={styles.flatListContainer}>            
+           {data.userLevels.map((item,index) => {
+return((item.isCompleted || item.isCurrent) &&
+               (
+                  <Card key={index} style={styles.card} status='warning' onPress={() =>redirectToDetail(item)} >
+                <View style={{justifyContent:'center',alignItems:'center',flex:1}}>
+                <Text style={{fontSize:wp('4%')}}>{item.orderNo}</Text>
+                { !item.isCurrent && <Icon 
+                style={styles.icon}
+                fill='#8F9BB3'
+                name={'checkmark-outline'}/>}
+                </View>
+                 </Card>
+               ))
+           })}
+           
+           </View>
+
+            {/* <FlatList
+            data={data.userLevels}
+            renderItem={( {item,index} ) => renderItem(item)}
+            keyExtractor={item => item.id}
+            /> */}
+    
         </ScrollView>
+            </View>
     )
 }
 
@@ -57,8 +63,6 @@ const styles = StyleSheet.create({
     container: {
         height: hp('100%'),
         width:wp('100%'),
-        justifyContent: 'center',
-        alignItems: 'center'
     },
     modalCentered:{
         flex: 1,
@@ -81,5 +85,22 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5
+    },
+    flatListContainer:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        backgroundColor:'#dddddd'
+    },
+    card: {
+        height:wp('15%'),
+        width:hp('15%'),
+        margin: 2,
+    },
+    icon:{
+        height:wp('5%'),
+        width:hp('5%')
     }
 })
